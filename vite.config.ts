@@ -7,8 +7,6 @@ export default defineConfig({
 
 	server: {
 		host: '0.0.0.0',
-		port: 6484,
-
-		https: {}
+		port: 6484
 	}
 });
