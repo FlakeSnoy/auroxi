@@ -1,3 +1,27 @@
-<h1>Welcome to your library project</h1>
-<p>Create your package using @sveltejs/package and preview/showcase your work with SvelteKit</p>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<script lang="ts">
+	import Navbar from '$lib/components/landing/Navbar.svelte';
+	import Hero from '$lib/components/landing/Hero.svelte';
+	import Howitworks from '$lib/components/landing/Howitworks.svelte';
+	import Features from '$lib/components/landing/Features.svelte';
+	import Footer from '$lib/components/landing/Footer.svelte';
+
+	export let data: {
+		platform: string;
+	};
+</script>
+
+<svelte:head>
+	<title>{data.platform} | Study smarter</title>
+	<meta
+		name="description"
+		content="Auroxi is a study platform for focused notes, clearer revision, and consistent learning habits."
+	/>
+</svelte:head>
+
+<main class="min-h-screen bg-zinc-950 text-white">
+	<Navbar />
+	<Hero />
+	<Howitworks />
+	<Features />
+	<Footer />
+</main>
