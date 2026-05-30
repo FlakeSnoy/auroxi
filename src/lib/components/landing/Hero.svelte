@@ -1,76 +1,145 @@
-<section class="relative isolate overflow-hidden px-4 pt-32 sm:pt-36">
-	<div class="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_20%_20%,rgba(190,242,100,0.18),transparent_32%),radial-gradient(circle_at_80%_10%,rgba(255,255,255,0.08),transparent_28%)]"></div>
-	<div class="mx-auto grid max-w-6xl items-center gap-12 pb-20 pt-8 lg:grid-cols-[1.05fr_0.95fr]">
-		<div class="space-y-7">
-			<p class="w-fit rounded-full border border-lime-300/30 bg-lime-300/10 px-4 py-2 text-sm font-medium text-lime-200">
-				Study platform for focused learners
-			</p>
-			<div class="space-y-5">
-				<h1 class="max-w-3xl text-5xl font-bold leading-tight text-white sm:text-6xl lg:text-7xl">
-					Make study sessions feel clear, calm, and doable.
-				</h1>
-				<p class="max-w-2xl text-lg leading-8 text-zinc-300">
-					Auroxi helps students shape rough thoughts into useful notes, organize revision plans, and keep momentum without drowning in tabs, files, and last-minute panic.
-				</p>
-			</div>
+<script lang="ts">
+  import { onMount } from 'svelte';
+  import NotePreview from '$lib/components/landing/NotePreview.svelte';
 
-			<form id="register" class="flex max-w-xl flex-col gap-3 rounded-3xl border border-white/10 bg-white/5 p-3 sm:flex-row">
-				<label class="sr-only" for="email">Email address</label>
-				<input
-					id="email"
-					type="email"
-					placeholder="Enter your email"
-					class="min-h-12 flex-1 rounded-full border-white/10 bg-zinc-900/80 px-5 text-white placeholder:text-zinc-500 focus:border-lime-300 focus:ring-lime-300"
-				/>
-				<button class="min-h-12 rounded-full bg-lime-300 px-6 font-semibold text-zinc-950 transition hover:bg-lime-200 focus:outline-none focus:ring-2 focus:ring-lime-200">
-					Register
-				</button>
-			</form>
-		</div>
+  let visible = $state(false);
 
-		<div class="relative min-h-[420px]">
-			<div class="absolute left-4 top-8 h-72 w-72 animate-pulse rounded-full bg-lime-300/20 blur-3xl"></div>
-			<div class="relative animate-[float_6s_ease-in-out_infinite] rounded-[2rem] border border-white/10 bg-zinc-900/90 p-5 shadow-2xl shadow-lime-950/40">
-				<div class="mb-5 flex items-center justify-between">
-					<div>
-						<p class="text-sm text-zinc-400">Today&apos;s study notes</p>
-						<h2 class="text-xl font-semibold">Biology: Cell transport</h2>
-					</div>
-					<span class="rounded-full bg-lime-300 px-3 py-1 text-xs font-bold text-zinc-950">Live</span>
-				</div>
-				<div class="space-y-3">
-					<div class="rounded-2xl bg-white/5 p-4">
-						<p class="text-sm font-semibold text-lime-200">Key idea</p>
-						<p class="mt-2 text-zinc-300">Osmosis moves water across a partially permeable membrane from high to low water potential.</p>
-					</div>
-					<div class="grid gap-3 sm:grid-cols-2">
-						<div class="rounded-2xl bg-white/5 p-4">
-							<p class="text-sm text-zinc-400">Next review</p>
-							<p class="mt-2 text-2xl font-bold">18 min</p>
-						</div>
-						<div class="rounded-2xl bg-lime-300 p-4 text-zinc-950">
-							<p class="text-sm font-semibold">Confidence</p>
-							<p class="mt-2 text-2xl font-bold">82%</p>
-						</div>
-					</div>
-					<div class="rounded-2xl border border-lime-300/20 bg-lime-300/10 p-4">
-						<p class="text-sm font-semibold text-lime-100">Auroxi prompt</p>
-						<p class="mt-2 text-sm leading-6 text-zinc-300">Turn this topic into 5 exam-style questions and mark the weak spots.</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+  const previewNotes = [
+    {
+      title: "Photosynthesis Explained",
+      school: "Goldmine JSS",
+      country: "Botswana",
+      grade: "Form 2",
+      subject: "Biology",
+      initials: "TM",
+      color: "text-lime-400 bg-lime-400/10 border-lime-400/20",
+      delay: 0,
+    },
+    {
+      title: "Quadratic Equations",
+      school: "Maru-a-Pula",
+      country: "Botswana",
+      grade: "Form 3",
+      subject: "Mathematics",
+      initials: "KD",
+      color: "text-sky-400 bg-sky-400/10 border-sky-400/20",
+      delay: 100,
+    },
+    {
+      title: "The Cold War Summary",
+      school: "Thornhill",
+      country: "Zimbabwe",
+      grade: "Form 4",
+      subject: "History",
+      initials: "NZ",
+      color: "text-violet-400 bg-violet-400/10 border-violet-400/20",
+      delay: 200,
+    },
+    {
+      title: "Newton's Laws of Motion",
+      school: "Westwood Sec",
+      country: "South Africa",
+      grade: "Grade 11",
+      subject: "Physics",
+      initials: "AB",
+      color: "text-orange-400 bg-orange-400/10 border-orange-400/20",
+      delay: 300,
+    },
+    {
+      title: "Shakespeare's Macbeth",
+      school: "Francistown Sec",
+      country: "Botswana",
+      grade: "Form 5",
+      subject: "English",
+      initials: "KM",
+      color: "text-rose-400 bg-rose-400/10 border-rose-400/20",
+      delay: 400,
+    },
+    {
+      title: "Supply and Demand",
+      school: "Gaborone Sec",
+      country: "Botswana",
+      grade: "Form 4",
+      subject: "Economics",
+      initials: "LP",
+      color: "text-amber-400 bg-amber-400/10 border-amber-400/20",
+      delay: 500,
+    },
+  ];
+
+  onMount(() => {
+    requestAnimationFrame(() => { visible = true; });
+  });
+</script>
+
+<section class="min-h-screen bg-zinc-950 flex flex-col items-center justify-center pt-32 pb-24 px-4 relative overflow-hidden">
+
+  <!-- Ambient glow -->
+  <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-200 h-125 bg-lime-400/6 rounded-full blur-[160px] pointer-events-none"></div>
+  <div class="absolute bottom-0 right-0 w-96 h-96 bg-lime-400/4 rounded-full blur-[100px] pointer-events-none"></div>
+  <div class="absolute top-24 left-10 w-48 h-48 bg-lime-400/3 rounded-full blur-[60px] pointer-events-none"></div>
+
+  <!-- Entrance wrapper -->
+  <div class="flex flex-col items-center w-full max-w-5xl transition-all duration-1000
+    {visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}">
+
+    <!-- Live badge -->
+    <div class="flex items-center gap-2 bg-zinc-900/80 border border-zinc-800 rounded-full px-4 py-1.5 mb-8 backdrop-blur-sm">
+      <span class="w-2 h-2 rounded-full bg-lime-400 animate-pulse"></span>
+      <span class="text-zinc-400 text-xs font-medium tracking-wide">Built for students across Africa and beyond</span>
+    </div>
+
+    <!-- Headline -->
+    <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black text-white text-center leading-[1.04] max-w-4xl mb-6 tracking-tight">
+      Your school's knowledge
+      <br/>
+      <span class="text-lime-400 relative">
+        all in one place.
+        <span class="absolute -bottom-1 left-0 right-0 h-px bg-linear-to-r from-transparent via-lime-400/60 to-transparent"></span>
+      </span>
+    </h1>
+
+    <!-- Subheading -->
+    <p class="text-zinc-400 text-center text-lg sm:text-xl max-w-2xl mb-10 leading-relaxed">
+      Auroxi is the student platform where you publish notes, join study groups,
+      chat with classmates and earn rewards —
+      <span class="text-zinc-300 font-medium">all tagged to your school and class.</span>
+    </p>
+
+    <!-- CTAs -->
+    <div class="flex flex-col sm:flex-row items-center gap-3 mb-20">
+      <a href="/register"
+        class="bg-lime-400 hover:bg-lime-300 text-zinc-950 font-black px-8 py-3.5 rounded-xl transition-all text-sm w-full sm:w-auto text-center shadow-xl shadow-lime-400/25 hover:shadow-lime-400/40 hover:scale-105 active:scale-95">
+        Get started — it's free
+      </a>
+      <a href="#how-it-works"
+        class="border border-zinc-700 hover:border-lime-400/40 text-zinc-300 hover:text-white font-medium px-8 py-3.5 rounded-xl transition-all text-sm w-full sm:w-auto text-center hover:bg-zinc-900/50">
+        See how it works ↓
+      </a>
+    </div>
+
+    <!-- Note previews — masonry-style grid -->
+    <div class="w-full">
+      <p class="text-zinc-600 text-xs text-center mb-5 uppercase tracking-[0.2em] font-medium">
+        Live from the library
+      </p>
+
+      <!-- 3 cols on desktop, 2 on tablet, 1 on mobile -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {#each previewNotes as note}
+          <NotePreview
+            title={note.title}
+            school={note.school}
+            country={note.country}
+            grade={note.grade}
+            subject={note.subject}
+            initials={note.initials}
+            color={note.color}
+            delay={note.delay}
+          />
+        {/each}
+      </div>
+    </div>
+
+  </div>
 </section>
-
-<style>
-	@keyframes float {
-		0%,
-		100% {
-			transform: translateY(0);
-		}
-		50% {
-			transform: translateY(-14px);
-		}
-	}
-</style>
