@@ -38,6 +38,7 @@
 	"devDependencies": {
 		"@better-auth/cli": "~1.4.21",
 		"@fontsource-variable/geist": "^5.2.9",
+		"@internationalized/date": "^3.12.2",
 		"@libsql/client": "^0.17.2",
 		"@lucide/svelte": "^1.17.0",
 		"@sveltejs/adapter-auto": "^7.0.1",
@@ -66,6 +67,7 @@
 		"svelte"
 	],
 	"dependencies": {
+		"bits-ui": "^2.18.1",
 		"socket.io": "^4.8.3",
 		"socket.io-client": "^4.8.3"
 	}

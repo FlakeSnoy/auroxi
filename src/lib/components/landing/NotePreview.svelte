@@ -1,4 +1,7 @@
 <script lang="ts">
+  import { Badge } from '$lib/components/ui/badge/index.js';
+  import { Card } from '$lib/components/ui/card/index.js';
+
   const {
     title = '',
     school = '',
@@ -6,7 +9,7 @@
     grade = '',
     subject = '',
     initials = '',
-    color = 'text-lime-400 bg-lime-400/10 border-lime-400/20',
+    color = 'text-zinc-300 bg-zinc-800 border-zinc-700',
     delay = 0,
   }: {
     title: string;
@@ -20,36 +23,39 @@
   } = $props();
 </script>
 
-<div
-  class="bg-zinc-900/80 border border-zinc-800 rounded-2xl p-5
-    hover:border-lime-400/40 hover:-translate-y-1 hover:shadow-xl hover:shadow-lime-400/5
-    transition-all duration-300 group cursor-pointer backdrop-blur-sm"
+<Card
+  class="bg-zinc-800/60 border border-zinc-700/70 rounded-xl p-4
+    hover:border-zinc-600 hover:bg-zinc-800
+    hover:-translate-y-0.5 transition-all duration-200 group cursor-pointer shadow-none"
   style="animation-delay: {delay}ms"
 >
-  <!-- Top row: subject tag + avatar -->
-  <div class="flex items-start justify-between mb-4">
-    <span class="text-xs border rounded-full px-3 py-0.5 font-semibold {color}">
+  <!-- Top row -->
+  <div class="flex items-start justify-between mb-3">
+    <Badge
+      variant="outline"
+      class="text-xs font-semibold border rounded-full px-2.5 py-0.5 {color}"
+    >
       {subject}
-    </span>
-    <div class="w-7 h-7 rounded-full bg-zinc-800 flex items-center justify-center
-      text-xs text-zinc-400 font-bold shrink-0
-      group-hover:ring-2 group-hover:ring-lime-400/20 transition-all">
+    </Badge>
+    <div class="w-6 h-6 rounded-full bg-zinc-700 border border-zinc-600
+      flex items-center justify-center text-[10px] text-zinc-400 font-bold shrink-0">
       {initials}
     </div>
   </div>
 
-  <!-- Note title -->
-  <h3 class="text-white font-bold text-sm mb-4 group-hover:text-lime-400 transition-colors leading-snug">
+  <!-- Title -->
+  <p class="text-zinc-200 font-semibold text-sm mb-3 leading-snug
+    group-hover:text-white transition-colors">
     {title}
-  </h3>
+  </p>
 
-  <!-- Footer: location + grade -->
+  <!-- Location -->
   <div class="flex items-center gap-1.5 text-zinc-600 text-xs">
-    <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
+    <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" class="shrink-0">
       <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
     </svg>
     <span>{school}, {country}</span>
     <span class="text-zinc-700">·</span>
     <span>{grade}</span>
   </div>
-</div>
+</Card>
