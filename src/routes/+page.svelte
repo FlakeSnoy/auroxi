@@ -12,7 +12,7 @@
   <meta property="og:title" content="Auroxi" />
   <meta property="og:description" content="Your school's knowledge, all in one place." />
   <meta name="theme-color" content="#a3e635" />
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.png" type="image/svg+xml" />
 </svelte:head>
 
 <Navbar />
