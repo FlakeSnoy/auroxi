@@ -5,7 +5,12 @@
   import * as Card from '$lib/components/ui/card/index.js';
 
   let visible = $state(false);
-  onMount(() => { requestAnimationFrame(() => { visible = true; }); });
+
+  onMount(() => {
+    requestAnimationFrame(() => {
+      visible = true;
+    });
+  });
 
   const features = [
     {
@@ -19,7 +24,7 @@
     },
     {
       title: 'Photo to PDF',
-      description: 'Snap a photo of handwritten notes — OCR converts it to a clean PDF.',
+      description: 'Snap a photo of handwritten notes - OCR converts it to a clean PDF.',
       detail: 'No scanning app needed.',
       svg: `<rect x="3" y="3" width="18" height="18" rx="2" stroke="#a3e635" stroke-width="1.5"/>
             <circle cx="8.5" cy="8.5" r="1.5" stroke="#a3e635" stroke-width="1.5"/>
@@ -81,14 +86,16 @@
   ];
 </script>
 
-<section id="features" class="bg-zinc-900 py-24 px-6 border-t border-zinc-800/60">
-  <div class="max-w-5xl mx-auto">
-
-    <!-- Header -->
-    <div class="mb-10 transition-all duration-700
-      {visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}">
-      <Badge variant="outline"
-        class="text-zinc-500 border-zinc-700 mb-3 rounded-full text-xs font-semibold tracking-widest uppercase">
+<section id="features" class="bg-zinc-900 py-20 px-6 border-t border-zinc-800/60">
+  <div class="max-w-4xl mx-auto">
+    <div
+      class="mb-8 transition-all duration-700
+        {visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}"
+    >
+      <Badge
+        variant="outline"
+        class="text-zinc-500 border-zinc-700 mb-3 rounded-full text-xs font-semibold tracking-widest uppercase"
+      >
         Features
       </Badge>
       <h2 class="text-3xl sm:text-4xl font-black text-white tracking-tight">
@@ -96,37 +103,31 @@
       </h2>
     </div>
 
-    <!-- 3-col on desktop, 2-col on mobile — same picture frame grid -->
     <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
       {#each features as feature, i}
         <Card.Root
-          class="bg-zinc-800/40 border-zinc-700/50 rounded-xl overflow-hidden
+          class="h-48 bg-zinc-800/40 border-zinc-700/50 rounded-xl overflow-hidden
             hover:border-zinc-600 transition-colors duration-200 group"
           style="animation-delay: {i * 50}ms"
         >
-          <!-- Picture frame top -->
-          <div class="aspect-square bg-zinc-800/60 border-b border-zinc-700/50
-            flex items-center justify-center p-4">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
+          <div class="h-1/2 bg-zinc-800/60 border-b border-zinc-700/50 flex items-center justify-center p-3">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
               {@html feature.svg}
             </svg>
           </div>
 
-          <!-- Content under frame -->
-          <Card.Content class="p-3">
+          <Card.Content class="h-1/2 p-3 flex flex-col">
             <Card.Title class="text-zinc-100 text-xs font-bold mb-1 group-hover:text-white transition-colors duration-200">
               {feature.title}
             </Card.Title>
-            <p class="text-zinc-500 text-[11px] leading-relaxed mb-2">
+            <p class="text-zinc-500 text-[11px] leading-snug mb-2 line-clamp-2">
               {feature.description}
             </p>
-            <Separator class="bg-zinc-700/50 mb-2" />
-            <p class="text-zinc-600 text-[10px]">{feature.detail}</p>
+            <Separator class="bg-zinc-700/50 mt-auto mb-2" />
+            <p class="text-zinc-600 text-[10px] leading-none">{feature.detail}</p>
           </Card.Content>
-
         </Card.Root>
       {/each}
     </div>
-
   </div>
 </section>

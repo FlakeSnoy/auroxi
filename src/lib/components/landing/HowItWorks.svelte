@@ -46,7 +46,7 @@
     {
       number: '03',
       title: 'Join groups and chat',
-      description: 'Browse study groups by subject. Chat with members — every message is auto-moderated.',
+      description: 'Browse study groups by subject. Chat with members - every message is auto-moderated.',
       detail: 'No manual reporting needed.',
       svg: `
         <circle cx="22" cy="24" r="8" stroke="#a3e635" stroke-width="2.5" fill="none"
@@ -78,24 +78,45 @@
     },
   ];
 
-  onMount(() => { requestAnimationFrame(() => { visible = true; }); });
+  onMount(() => {
+    requestAnimationFrame(() => {
+      visible = true;
+    });
+  });
 </script>
 
 <style>
-  @keyframes draw { to { stroke-dashoffset: 0; } }
-  @keyframes pop  { to { opacity: 1; } }
-  :global(.step-svg svg *) { animation-play-state: paused; }
-  :global(.step-svg.play svg *) { animation-play-state: running; }
+  @keyframes draw {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes pop {
+    to {
+      opacity: 1;
+    }
+  }
+
+  :global(.step-svg svg *) {
+    animation-play-state: paused;
+  }
+
+  :global(.step-svg.play svg *) {
+    animation-play-state: running;
+  }
 </style>
 
 <section id="how-it-works" class="bg-zinc-900 py-24 px-6 border-t border-zinc-800/60">
   <div class="max-w-5xl mx-auto">
-
-    <!-- Header -->
-    <div class="mb-10 transition-all duration-700
-      {visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}">
-      <Badge variant="outline"
-        class="text-zinc-500 border-zinc-700 mb-3 rounded-full text-xs font-semibold tracking-widest uppercase">
+    <div
+      class="mb-10 transition-all duration-700
+        {visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}"
+    >
+      <Badge
+        variant="outline"
+        class="text-zinc-500 border-zinc-700 mb-3 rounded-full text-xs font-semibold tracking-widest uppercase"
+      >
         How it works
       </Badge>
       <h2 class="text-3xl sm:text-4xl font-black text-white tracking-tight">
@@ -103,48 +124,40 @@
       </h2>
     </div>
 
-    <!-- 4-column grid — same layout as the Roblox card reference -->
     <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
       {#each steps as step, i}
         <Card.Root
-          class="bg-zinc-800/40 border-zinc-700/50 rounded-xl overflow-hidden
+          class="h-60 bg-zinc-800/40 border-zinc-700/50 rounded-xl overflow-hidden
             hover:border-zinc-600 transition-colors duration-200 group step-svg play"
           style="animation-delay: {i * 80}ms"
         >
-          <!-- Picture frame top — SVG illustration -->
-          <div class="aspect-square bg-zinc-800/60 border-b border-zinc-700/50
-            flex items-center justify-center relative p-4">
-
-            <!-- Step number badge -->
+          <div class="h-1/2 bg-zinc-800/60 border-b border-zinc-700/50 flex items-center justify-center relative p-4">
             <div class="absolute top-2 left-2">
-              <Badge variant="outline"
-                class="text-lime-400 border-zinc-700 text-[10px] font-mono font-bold rounded-full px-2 py-0">
+              <Badge
+                variant="outline"
+                class="text-lime-400 border-zinc-700 text-[10px] font-mono font-bold rounded-full px-2 py-0"
+              >
                 {step.number}
               </Badge>
             </div>
 
-            <!-- Animated SVG -->
-            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"
-              class="w-16 h-16 mt-4">
+            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-14 h-14 mt-3">
               {@html step.svg}
             </svg>
           </div>
 
-          <!-- Content under frame -->
-          <Card.Content class="p-3">
+          <Card.Content class="h-1/2 p-3 flex flex-col">
             <Card.Title class="text-zinc-100 text-xs font-bold mb-1 group-hover:text-white transition-colors">
               {step.title}
             </Card.Title>
-            <p class="text-zinc-500 text-[11px] leading-relaxed mb-2">
+            <p class="text-zinc-500 text-[11px] leading-snug mb-2 line-clamp-3">
               {step.description}
             </p>
-            <Separator class="bg-zinc-700/50 mb-2" />
-            <p class="text-zinc-600 text-[10px]">{step.detail}</p>
+            <Separator class="bg-zinc-700/50 mt-auto mb-2" />
+            <p class="text-zinc-600 text-[10px] leading-none">{step.detail}</p>
           </Card.Content>
-
         </Card.Root>
       {/each}
     </div>
-
   </div>
 </section>
