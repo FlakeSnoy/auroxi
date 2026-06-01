@@ -94,7 +94,7 @@
           align="start">
 
           <DropdownMenu.Item class="p-0 focus:bg-transparent">
-            <a href="/docs/newsroom" class={dropItem}>
+            <a href="/newsroom" class={dropItem}>
               <div class="w-7 h-7 rounded-lg bg-zinc-800 flex items-center justify-center shrink-0">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
                   <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2zm0 0a2 2 0 0 1-2-2V9" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -191,13 +191,13 @@
   {#if mobileOpen}
     <div class="md:hidden mt-3 pt-3 border-t border-zinc-800 flex flex-col gap-1">
       <p class="text-zinc-600 text-[10px] uppercase tracking-widest font-semibold px-3 pb-1">About</p>
-      <a href="/about/information" onclick={() => mobileOpen = false}
+      <a href="/information" onclick={() => mobileOpen = false}
         class="text-zinc-400 hover:text-white text-sm px-3 py-2 transition-colors duration-200 underline-offset-4 hover:underline">
         Information
       </a>
       <Separator class="bg-zinc-800 my-1" />
       <p class="text-zinc-600 text-[10px] uppercase tracking-widest font-semibold px-3 pb-1">Documentation</p>
-      <a href="/docs/newsroom" onclick={() => mobileOpen = false}
+      <a href="/newsroom" onclick={() => mobileOpen = false}
         class="text-zinc-400 hover:text-white text-sm px-3 py-2 transition-colors duration-200 underline-offset-4 hover:underline">
         Newsroom
       </a>

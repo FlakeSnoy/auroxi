@@ -3,7 +3,6 @@
   import { Badge } from '$lib/components/ui/badge/index.js';
   import { Separator } from '$lib/components/ui/separator/index.js';
   import * as Card from '$lib/components/ui/card/index.js';
-  import SectionBg from '$lib/components/landing/SectionBg.svelte';
 
   let visible = $state(false);
 
@@ -87,7 +86,6 @@
 
 <section id="how-it-works" class="bg-zinc-900 py-24 px-6 border-t border-zinc-800/60 relative overflow-hidden">
 
-  <SectionBg position="left" opacity={0.12} />
 
   <div class="max-w-5xl mx-auto relative z-10">
 

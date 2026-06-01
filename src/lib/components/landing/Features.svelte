@@ -2,7 +2,6 @@
   import { onMount } from 'svelte';
   import { Badge } from '$lib/components/ui/badge/index.js';
   import * as Card from '$lib/components/ui/card/index.js';
-  import SectionBg from '$lib/components/landing/SectionBg.svelte';
 
   let visible = $state(false);
   let hovered = $state(false);
@@ -23,7 +22,6 @@
 
 <section id="features" class="bg-zinc-900 py-24 px-6 border-t border-zinc-800/60 relative overflow-hidden">
 
-  <SectionBg position="right" opacity={0.12} />
 
   <div class="max-w-5xl mx-auto relative z-10">
 
