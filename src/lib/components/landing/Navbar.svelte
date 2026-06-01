@@ -42,7 +42,7 @@
       </Button>
       <Button variant="ghost" href="#features"
         class="text-zinc-400 hover:text-zinc-100 hover:bg-transparent font-medium text-sm transition-colors duration-200">
-        Features
+        Documentation
       </Button>
 
       <Separator orientation="vertical" class="h-4 bg-zinc-700/60 mx-2" />
