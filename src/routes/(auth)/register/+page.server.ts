@@ -66,6 +66,6 @@ export const actions: Actions = {
       userId: session.user.id,
     } as any);
 
-    throw redirect(302, '/app');
+    throw redirect(302, '/home');
   }
 };

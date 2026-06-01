@@ -4,7 +4,7 @@ import { auth } from '$lib/server/auth.js';
 import { requireGuest } from '$lib/server/auth/guards.js';
 
 export const load: PageServerLoad = async (event) => {
-  // Already logged in? Send to /app
+  // Already logged in? Send to /home
   await requireGuest(event);
   return {};
 };
@@ -34,6 +34,6 @@ export const actions: Actions = {
       });
     }
 
-    throw redirect(302, '/app');
+    throw redirect(302, '/home');
   }
 };
