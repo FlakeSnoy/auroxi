@@ -2,7 +2,7 @@ import { auth } from '$lib/server/auth.js';
 import type { RequestEvent } from '@sveltejs/kit';
 
 /**
- * Get the current session from a SvelteKit request event.
+ * Get the current session from the request headers.
  * Returns null if no valid session exists.
  */
 export async function getSession(event: RequestEvent) {

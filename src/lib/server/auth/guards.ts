@@ -4,8 +4,8 @@ import type { RequestEvent } from '@sveltejs/kit';
 
 /**
  * Require the user to be logged in.
- * If not, redirect to /login.
- * Use this in (app) layout.server.ts
+ * If not → redirect to /login.
+ * Use in (app)/+layout.server.ts
  */
 export async function requireAuth(event: RequestEvent) {
   const session = await getSession(event);
@@ -15,8 +15,8 @@ export async function requireAuth(event: RequestEvent) {
 
 /**
  * Require the user to be logged OUT.
- * If already logged in, redirect to /app.
- * Use this in (auth) register/login page.server.ts
+ * If already logged in → redirect to /app.
+ * Use in (auth) register and login +page.server.ts
  */
 export async function requireGuest(event: RequestEvent) {
   const session = await getSession(event);
