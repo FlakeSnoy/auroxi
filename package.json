@@ -68,7 +68,10 @@
 		"svelte"
 	],
 	"dependencies": {
+		"@apollo/server": "^5.5.1",
 		"bits-ui": "^2.18.1",
+		"drizzle-graphql": "^0.8.5",
+		"graphql": "^16.14.0",
 		"socket.io": "^4.8.3",
 		"socket.io-client": "^4.8.3"
 	}
