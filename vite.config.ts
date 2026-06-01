@@ -10,6 +10,8 @@ export default defineConfig({
 		port: 6484
 	},
 
+	assetsInclude: ['**/*.svg'],
+
 	optimizeDeps: {
 		exclude: ['bits-ui'],
 	},

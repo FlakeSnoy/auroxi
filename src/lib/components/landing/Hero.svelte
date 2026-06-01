@@ -3,7 +3,6 @@
   import { Badge } from '$lib/components/ui/badge/index.js';
   import * as Card from '$lib/components/ui/card/index.js';
 
-  // Import SVGs directly from $lib/assets/(background)/
   import redSemi    from '$lib/assets/(background)/index-portal-red-semi.svg';
   import red        from '$lib/assets/(background)/index-portal-red.svg';
   import orangeSemi from '$lib/assets/(background)/index-portal-orange-semi.svg';
@@ -15,18 +14,17 @@
   import blueSemi   from '$lib/assets/(background)/index-portal-blue-semi.svg';
   import blue       from '$lib/assets/(background)/index-portal-blue.svg';
 
-  // Red outermost → blue innermost, shrinking size, slowing speed outward
   const rings = [
-    { src: redSemi,    size: 340, duration: 8,  reverse: false },
-    { src: red,        size: 310, duration: 10, reverse: true  },
-    { src: orangeSemi, size: 282, duration: 12, reverse: false },
-    { src: orange,     size: 256, duration: 14, reverse: true  },
-    { src: yellowSemi, size: 232, duration: 16, reverse: false },
-    { src: yellow,     size: 210, duration: 18, reverse: true  },
-    { src: greenSemi,  size: 190, duration: 20, reverse: false },
-    { src: green,      size: 172, duration: 22, reverse: true  },
-    { src: blueSemi,   size: 156, duration: 24, reverse: false },
-    { src: blue,       size: 142, duration: 26, reverse: true  },
+    { src: redSemi,    size: 420, duration: 8,  reverse: false },
+    { src: red,        size: 388, duration: 10, reverse: true  },
+    { src: orangeSemi, size: 358, duration: 12, reverse: false },
+    { src: orange,     size: 330, duration: 14, reverse: true  },
+    { src: yellowSemi, size: 304, duration: 16, reverse: false },
+    { src: yellow,     size: 280, duration: 18, reverse: true  },
+    { src: greenSemi,  size: 258, duration: 20, reverse: false },
+    { src: green,      size: 238, duration: 22, reverse: true  },
+    { src: blueSemi,   size: 220, duration: 24, reverse: false },
+    { src: blue,       size: 204, duration: 26, reverse: true  },
   ];
 
   const skeletonNotes = [
@@ -52,6 +50,12 @@
     transform-origin: center center;
     pointer-events: none;
     user-select: none;
+    /* Remove any browser default img outline/border */
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    background: none !important;
+    display: block;
   }
   .cw  { animation: spin-cw  linear infinite; }
   .ccw { animation: spin-ccw linear infinite; }
@@ -66,9 +70,10 @@
   </div>
 
   <!-- ── Orbital ring ───────────────────────────────────── -->
-  <div class="relative flex items-center justify-center mb-12 shrink-0"
-    style="width: 340px; height: 340px;">
-
+  <div
+    class="relative flex items-center justify-center mb-12 shrink-0"
+    style="width: 420px; height: 420px;"
+  >
     {#each rings as ring}
       <img
         src={ring.src}
@@ -81,10 +86,12 @@
 
     <!-- Favicon centre -->
     <div class="absolute inset-0 flex items-center justify-center z-10">
-      <img src="/favicon.svg" alt="Auroxi"
-        class="w-14 h-14 rounded-2xl shadow-2xl shadow-black/70" />
+      <img
+        src="/favicon.svg"
+        alt="Auroxi"
+        class="w-16 h-16 rounded-2xl shadow-2xl shadow-black/70 border-0 outline-none"
+      />
     </div>
-
   </div>
 
   <!-- ── Text ───────────────────────────────────────────── -->
@@ -107,7 +114,7 @@
       and chat with classmates — organised by school, grade and subject.
     </p>
 
-    <!-- CTAs — underline on hover only, no box/bg -->
+    <!-- CTAs — underline on hover only -->
     <div class="flex items-center gap-8 mb-14">
       <a href="/register"
         class="text-white font-black text-sm underline-offset-4 hover:underline transition-all">
@@ -127,7 +134,7 @@
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {#each skeletonNotes as note}
           <Card.Root class="bg-zinc-800/50 border-zinc-700/60 rounded-xl overflow-hidden
-            hover:border-zinc-600 transition-colors duration-200 group cursor-pointer">
+            hover:border-zinc-600 transition-colors duration-200 cursor-pointer">
             <div class="aspect-square bg-zinc-800/60 border-b border-zinc-700/50
               flex items-center justify-center relative p-4">
               <div class="absolute inset-4 flex flex-col gap-2 justify-center">
@@ -167,5 +174,4 @@
     </div>
 
   </div>
-
 </section>
