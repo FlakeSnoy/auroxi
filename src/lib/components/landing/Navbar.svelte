@@ -38,7 +38,7 @@
     <div class="hidden md:flex items-center gap-1">
       <Button variant="ghost" href="#how-it-works"
         class="text-zinc-400 hover:text-zinc-100 hover:bg-transparent font-medium text-sm transition-colors duration-200">
-        How it works
+        About
       </Button>
       <Button variant="ghost" href="#features"
         class="text-zinc-400 hover:text-zinc-100 hover:bg-transparent font-medium text-sm transition-colors duration-200">
@@ -53,7 +53,7 @@
           {#snippet child({ props })}
             <Button {...props} variant="ghost"
               class="text-zinc-300 hover:text-white hover:bg-transparent font-semibold text-sm transition-colors duration-200 gap-1.5">
-              Auth
+              Authentication
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" class="transition-transform duration-200">
                 <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
