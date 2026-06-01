@@ -15,10 +15,10 @@ export async function requireAuth(event: RequestEvent) {
 
 /**
  * Require the user to be logged OUT.
- * If already logged in → redirect to /app.
+ * If already logged in → redirect to /home.
  * Use in (auth) register and login +page.server.ts
  */
 export async function requireGuest(event: RequestEvent) {
   const session = await getSession(event);
-  if (session) throw redirect(302, '/app');
+  if (session) throw redirect(302, '/home');
 }
