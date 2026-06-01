@@ -3,17 +3,15 @@
   import { Badge } from '$lib/components/ui/badge/index.js';
   import { Separator } from '$lib/components/ui/separator/index.js';
   import * as Card from '$lib/components/ui/card/index.js';
+  import SectionBg from '$lib/components/landing/SectionBg.svelte';
 
   let visible = $state(false);
 
   const steps = [
     {
-      number: '01',
-      title: 'Create your account',
+      number: '01', title: 'Create your account',
       description: 'Sign up with your name, email and password. Set your school, country and grade.',
       detail: 'No payment required.',
-      // book-open from jsdelivr for thumbnail
-      thumb: 'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/svgs/solid/user-plus.svg',
       svg: `
         <circle cx="32" cy="22" r="10" stroke="#60a5fa" stroke-width="2.5" fill="none"
           style="stroke-dasharray:63;stroke-dashoffset:63;animation:draw 0.8s ease forwards 0.2s"/>
@@ -27,11 +25,9 @@
       `,
     },
     {
-      number: '02',
-      title: 'Publish your notes',
+      number: '02', title: 'Publish your notes',
       description: 'Type notes, upload a photo or drop a PDF. Tag it to your school, grade and subject.',
-      detail: 'Photos are converted to PDF via OCR.',
-      thumb: 'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/svgs/solid/file-lines.svg',
+      detail: 'Photos converted to PDF via OCR.',
       svg: `
         <rect x="14" y="8" width="28" height="36" rx="4"
           stroke="#60a5fa" stroke-width="2.5" fill="none"
@@ -47,11 +43,9 @@
       `,
     },
     {
-      number: '03',
-      title: 'Join groups and chat',
+      number: '03', title: 'Join groups and chat',
       description: 'Browse study groups by subject. Chat with members — every message is auto-moderated.',
       detail: 'No manual reporting needed.',
-      thumb: 'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/svgs/solid/users.svg',
       svg: `
         <circle cx="22" cy="24" r="8" stroke="#60a5fa" stroke-width="2.5" fill="none"
           style="stroke-dasharray:50;stroke-dashoffset:50;animation:draw 0.6s ease forwards 0.2s"/>
@@ -66,11 +60,9 @@
       `,
     },
     {
-      number: '04',
-      title: 'Earn Lunes rewards',
+      number: '04', title: 'Earn Lunes rewards',
       description: 'Log in daily to earn 0.5 Lunes. Save up to unlock Premium or buy a pack.',
       detail: '40 Lunes = 1 month Premium.',
-      thumb: 'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/svgs/solid/coins.svg',
       svg: `
         <circle cx="32" cy="32" r="18" stroke="#60a5fa" stroke-width="2.5" fill="none"
           style="stroke-dasharray:113;stroke-dashoffset:113;animation:draw 1s ease forwards 0.2s"/>
@@ -93,8 +85,11 @@
   :global(.step-svg.play svg *) { animation-play-state: running; }
 </style>
 
-<section id="how-it-works" class="bg-zinc-900 py-24 px-6 border-t border-zinc-800/60">
-  <div class="max-w-5xl mx-auto">
+<section id="how-it-works" class="bg-zinc-900 py-24 px-6 border-t border-zinc-800/60 relative overflow-hidden">
+
+  <SectionBg position="left" opacity={0.12} />
+
+  <div class="max-w-5xl mx-auto relative z-10">
 
     <div class="mb-10 transition-all duration-700
       {visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}">
@@ -107,7 +102,6 @@
       </h2>
     </div>
 
-    <!-- 4-col grid — square cards, thumbnail top, content bottom -->
     <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
       {#each steps as step, i}
         <Card.Root
@@ -115,32 +109,22 @@
             hover:border-zinc-600 transition-colors duration-200 group step-svg play"
           style="animation-delay:{i * 80}ms"
         >
-          <!-- Square thumbnail top -->
           <div class="aspect-square bg-zinc-800/60 border-b border-zinc-700/50
             flex items-center justify-center relative">
-
-            <!-- Step number -->
             <div class="absolute top-2 left-2">
               <Badge variant="outline"
                 class="text-blue-400 border-zinc-700 text-[10px] font-mono font-bold rounded-full px-2 py-0">
                 {step.number}
               </Badge>
             </div>
-
-            <!-- Animated SVG -->
-            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 mt-4">
+            <svg viewBox="0 0 64 64" fill="none" class="w-16 h-16 mt-4">
               {@html step.svg}
             </svg>
-
-            <!-- Favicon circle bottom right -->
             <div class="absolute bottom-2 right-2 w-7 h-7 rounded-full bg-zinc-900 border border-zinc-700
               flex items-center justify-center">
               <img src="/favicon.svg" alt="" class="w-4 h-4 rounded-sm border-0 outline-none" />
             </div>
-
           </div>
-
-          <!-- Content bottom -->
           <Card.Content class="p-3">
             <Card.Title class="text-zinc-100 text-xs font-bold mb-1 group-hover:text-white transition-colors">
               {step.title}
@@ -149,7 +133,6 @@
             <Separator class="bg-zinc-700/50 mb-2" />
             <p class="text-zinc-600 text-[10px]">{step.detail}</p>
           </Card.Content>
-
         </Card.Root>
       {/each}
     </div>
