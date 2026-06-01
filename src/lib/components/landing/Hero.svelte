@@ -9,16 +9,16 @@
   // Ring layers — red to blue, matching the file order from the screenshot
   // Each spins at a slightly different speed and direction for the orbital effect
   const rings = [
-    { src: '$lib/assets/background/index-portal-red-semi.svg',    size: 520, duration: 18, reverse: false },
-    { src: '$lib/assets/background/index-portal-red.svg',         size: 480, duration: 14, reverse: true  },
-    { src: '$lib/assets/background/index-portal-orange-semi.svg', size: 440, duration: 22, reverse: false },
-    { src: '$lib/assets/background/index-portal-orange.svg',      size: 400, duration: 16, reverse: true  },
-    { src: '$lib/assets/background/index-portal-yellow-semi.svg', size: 360, duration: 20, reverse: false },
-    { src: '$lib/assets/background/index-portal-yellow.svg',      size: 320, duration: 12, reverse: true  },
-    { src: '$lib/assets/background/index-portal-green-semi.svg',  size: 280, duration: 24, reverse: false },
-    { src: '$lib/assets/background/index-portal-green.svg',       size: 240, duration: 10, reverse: true  },
-    { src: '$lib/assets/background/index-portal-blue-semi.svg',   size: 200, duration: 28, reverse: false },
-    { src: '$lib/assets/background/index-portal-blue.svg',        size: 160, duration: 8,  reverse: true  },
+    { src: '$lib/assets/(background)/index-portal-red-semi.svg',    size: 520, duration: 18, reverse: false },
+    { src: '$lib/assets/(background)/index-portal-red.svg',         size: 480, duration: 14, reverse: true  },
+    { src: '$lib/assets/(background)/index-portal-orange-semi.svg', size: 440, duration: 22, reverse: false },
+    { src: '$lib/assets/(background)/index-portal-orange.svg',      size: 400, duration: 16, reverse: true  },
+    { src: '$lib/assets/(background)/index-portal-yellow-semi.svg', size: 360, duration: 20, reverse: false },
+    { src: '$lib/assets/(background)/index-portal-yellow.svg',      size: 320, duration: 12, reverse: true  },
+    { src: '$lib/assets/(background)/index-portal-green-semi.svg',  size: 280, duration: 24, reverse: false },
+    { src: '$lib/assets/(background)/index-portal-green.svg',       size: 240, duration: 10, reverse: true  },
+    { src: '$lib/assets/(background)/index-portal-blue-semi.svg',   size: 200, duration: 28, reverse: false },
+    { src: '$lib/assets/(background)/index-portal-blue.svg',        size: 160, duration: 8,  reverse: true  },
   ];
 
   const skeletonNotes = [
