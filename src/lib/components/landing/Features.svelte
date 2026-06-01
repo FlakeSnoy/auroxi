@@ -3,6 +3,7 @@
   import { Badge } from '$lib/components/ui/badge/index.js';
   import { Separator } from '$lib/components/ui/separator/index.js';
   import * as Card from '$lib/components/ui/card/index.js';
+  import thumbnail from '$lib/assets/webp/thumbnail.webp';
 
   let visible = $state(false);
   let hovered = $state(false);
@@ -48,8 +49,8 @@
         <!-- Thumbnail top — full square aspect -->
         <div class="aspect-square bg-zinc-800 relative overflow-hidden">
           <img
-            src="$lib/assets/webp/thumbnail.webp"
-            alt="Platform preview"
+            src={thumbnail}
+            alt="Blog 0.1 Preview"
             class="w-full h-full object-cover opacity-60"
           />
           <!-- Overlay gradient -->
@@ -59,7 +60,7 @@
           <div class="absolute top-3 left-3">
             <Badge variant="outline"
               class="text-zinc-400 border-zinc-600 text-xs rounded-full bg-zinc-900/60 backdrop-blur-sm">
-              Platform preview
+              Blog 0.1 Preview
             </Badge>
           </div>
 
