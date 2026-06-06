@@ -9,8 +9,8 @@ const timestamp = (name: string) =>
     .notNull();
 
 export const profile = sqliteTable('profile', {
-  id:           text('id').primaryKey().$defaultFn(() => crypto.randomUUID()),
-  profileId:    integer('profile_id').notNull().unique(),
+  profileId:    integer('profile_id').primaryKey({ autoIncrement: true }),
+  id:           text('id').notNull().unique().$defaultFn(() => crypto.randomUUID()),
   userId:       text('user_id').notNull().unique(),
   username:     text('username').notNull().unique(),
   displayName:  text('display_name'),

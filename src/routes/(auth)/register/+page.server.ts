@@ -5,7 +5,6 @@ import { requireGuest } from '$lib/server/auth/guards.js';
 import { validateEmail, validatePassword, validateUsername } from '$lib/server/auth/password.js';
 import { db } from '$lib/server/db/index.js';
 import { profile } from '$lib/server/db/schema.js';
-import { sql } from 'drizzle-orm';
 import { getUser } from '$lib/server/auth/session.js';
 
 export const load: PageServerLoad = async (event) => {
@@ -57,13 +56,7 @@ export const actions: Actions = {
     const user = await getUser(event);
     if (!user?.id) return fail(500, { error: 'Account created but session failed. Please login.', field: '' });
 
-    const maxResult = await db.get<{ max: number | null }>(
-      sql`SELECT MAX(profile_id) as max FROM profile`
-    );
-    const profileId = (maxResult?.max ?? 0) + 1;
-
     await db.insert(profile).values({
-      profileId,
       username,
       displayName: name,
       school,
