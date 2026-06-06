@@ -2,6 +2,6 @@
   const { children } = $props();
 </script>
 
-<div class="min-h-screen bg-zinc-950 flex">
+<div class="min-h-screen bg-zinc-900 flex">
   {@render children()}
 </div>
