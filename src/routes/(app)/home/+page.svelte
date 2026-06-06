@@ -14,9 +14,9 @@
 
 <Sidebar />
 
-<div class="flex-1 flex flex-col md:ml-56">
+<Frame>
   <Navbar />
   <main class="flex-1 p-6 flex flex-col gap-6">
-    <!-- import dashboard components here -->
+    <!-- dashboard components here -->
   </main>
-</div>
+</Frame>

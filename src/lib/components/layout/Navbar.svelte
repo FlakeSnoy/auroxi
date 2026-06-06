@@ -3,7 +3,11 @@
   import ProfileMenu from '$lib/components/profile/ProfileMenu.svelte';
 </script>
 
-<header class="h-14 border-b border-zinc-800 px-6 flex items-center justify-between bg-zinc-900 sticky top-0 z-40">
-  <SearchBar />
-  <ProfileMenu />
+<header class="h-14 flex items-center justify-center relative bg-zinc-900 px-6">
+  <div class="w-96">
+    <SearchBar />
+  </div>
+  <div class="absolute right-6">
+    <ProfileMenu />
+  </div>
 </header>
