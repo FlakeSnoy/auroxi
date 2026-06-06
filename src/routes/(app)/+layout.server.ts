@@ -14,5 +14,5 @@ export const load: LayoutServerLoad = async ({ locals }) => {
     where: eq(profile.userId, locals.user.id),
   }) as Profile | undefined;
 
-  return { user: locals.user, profileId: userProfile?.profileId ?? null };
+  return { user: locals.user, profileId: userProfile?.profileId ?? null, userProfile };
 };
