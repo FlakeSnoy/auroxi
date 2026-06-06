@@ -1,22 +1,12 @@
 <script lang="ts">
   import type { PageData } from './$types.js';
+  import type { InferSelectModel } from 'drizzle-orm';
   import type { profile } from '$lib/server/db/schema.js';
 
-  import Sidebar from '$lib/components/layout/Sidebar.svelte';
-  import Navbar from '$lib/components/layout/Navbar.svelte';
-  import Frame from '$lib/components/layout/Frame.svelte';
-
-  type Profile = typeof profile.$inferSelect;
+  type Profile = InferSelectModel<typeof profile>;
   const { data }: { data: PageData & { userProfile: Profile | undefined } } = $props();
 </script>
 
 <svelte:head><title>Home | Auroxi</title></svelte:head>
 
-<Sidebar />
-
-<Frame>
-  <Navbar />
-  <main class="flex-1 p-6 flex flex-col gap-6">
-    <!-- dashboard components here -->
-  </main>
-</Frame>
+<!-- dashboard components go here -->
