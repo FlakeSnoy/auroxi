@@ -1,6 +1,6 @@
 <script lang="ts">
   import SearchBar from '$lib/components/search/SearchBar.svelte';
-  import ProfileMenu from '$lib/components/profile/UserMenu.svelte';
+  import ProfileMenu from '$lib/components/layout/ProfileDropdown.svelte';
 </script>
 
 <header class="h-14 flex items-center justify-center relative bg-zinc-900 px-6">
