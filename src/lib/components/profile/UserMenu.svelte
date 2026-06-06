@@ -4,6 +4,7 @@
   import { goto } from '$app/navigation';
 
   const user = $derived($page.data.user);
+  const profileId = $derived($page.data.profileId);
   let open = $state(false);
 
   async function logout() {
@@ -13,7 +14,7 @@
 </script>
 
 <div class="relative">
-  <button onclick={() => open = !open} class="flex items-center justify-center rounded-full focus:outline-none">
+  <button onclick={() => open = !open} class="rounded-full focus:outline-none">
     <Avatar src={user?.image ?? undefined} name={user?.name} size={8} />
   </button>
 
@@ -25,7 +26,7 @@
         <p class="text-zinc-500 text-xs truncate">{user?.email}</p>
       </div>
       <div class="flex flex-col py-1">
-        <a href="/profile" onclick={() => open = false}
+        <a href="/users/{profileId}" onclick={() => open = false}
           class="px-4 py-2 text-sm text-zinc-300 hover:bg-zinc-700 hover:text-white transition-colors">
           Profile
         </a>
