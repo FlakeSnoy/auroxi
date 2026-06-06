@@ -6,6 +6,7 @@ import { validateEmail, validatePassword, validateUsername } from '$lib/server/a
 import { db } from '$lib/server/db/index.js';
 import { profile } from '$lib/server/db/schema.js';
 import { sql } from 'drizzle-orm';
+import { getUser } from '$lib/server/auth/session.js';
 
 export const load: PageServerLoad = async (event) => {
   await requireGuest(event);
@@ -53,12 +54,9 @@ export const actions: Actions = {
       });
     }
 
-    const session = await auth.api.getSession({ headers: event.request.headers });
-    if (!session?.user?.id) {
-      return fail(500, { error: 'Account created but session failed. Please login.', field: '' });
-    }
+    const user = await getUser(event);
+    if (!user?.id) return fail(500, { error: 'Account created but session failed. Please login.', field: '' });
 
-    // Generate numeric profileId
     const maxResult = await db.get<{ max: number | null }>(
       sql`SELECT MAX(profile_id) as max FROM profile`
     );
@@ -70,7 +68,7 @@ export const actions: Actions = {
       displayName: name,
       school,
       grade,
-      userId: session.user.id,
+      userId: user.id,
     });
 
     throw redirect(302, '/home');
