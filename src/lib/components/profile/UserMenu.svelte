@@ -5,6 +5,7 @@
 
   const user = $derived($page.data.user);
   const profileId = $derived($page.data.profileId);
+  const username = $derived($page.data.userProfile?.username);
   let open = $state(false);
 
   async function logout() {
@@ -15,15 +16,14 @@
 
 <div class="relative">
   <button onclick={() => open = !open} class="rounded-full focus:outline-none">
-    <Avatar src={user?.image ?? undefined} name={user?.name} size={8} />
+    <Avatar src={user?.image ?? undefined} name={username} size={8} />
   </button>
 
   {#if open}
     <button class="fixed inset-0 z-40" onclick={() => open = false} aria-label="close"></button>
     <div class="absolute right-0 top-10 w-48 bg-zinc-800 border border-zinc-700 rounded-xl shadow-xl z-50 overflow-hidden">
       <div class="px-4 py-3 border-b border-zinc-700">
-        <p class="text-white text-sm font-semibold truncate">{user?.name}</p>
-        <p class="text-zinc-500 text-xs truncate">{user?.email}</p>
+        <p class="text-white text-sm font-semibold truncate">@{username ?? 'unknown'}</p>
       </div>
       <div class="flex flex-col py-1">
         <a href="/users/{profileId}" onclick={() => open = false}
