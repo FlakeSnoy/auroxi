@@ -1,14 +1,24 @@
 <script lang="ts">
-  import Structure from '../structure/+page.svelte';
+  import { page } from '$app/stores';
+  import type { PageData } from './$types.js';
   import type { profile } from '$lib/server/db/schema.js';
-  import type { User } from 'better-auth';
+
+  import Sidebar from '$lib/components/layout/Sidebar.svelte';
+  import Navbar from '$lib/components/layout/Navbar.svelte';
+  import Frame from '$lib/components/layout/Frame.svelte';
 
   type Profile = typeof profile.$inferSelect;
-  type PageData = { userProfile: Profile | undefined; user: User | undefined };
-
-  const { data }: { data: PageData } = $props();
+  const { data }: { data: PageData & { userProfile: Profile | undefined } } = $props();
+  const user = $derived($page.data.user);
 </script>
 
-<svelte:head><title>Home | Auroxi</title></svelte:head>
+<svelte:head><title>Home — Auroxi</title></svelte:head>
 
-<Structure userProfile={data.userProfile} />
+<Sidebar />
+
+<div class="flex-1 flex flex-col md:ml-56">
+  <Navbar {user} />
+  <main class="flex-1 p-6 flex flex-col gap-6">
+    <!-- import dashboard components here -->
+  </main>
+</div>
