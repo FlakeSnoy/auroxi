@@ -10,7 +10,7 @@
   const { data }: { data: PageData & { userProfile: Profile | undefined } } = $props();
 </script>
 
-<svelte:head><title>Home — Auroxi</title></svelte:head>
+<svelte:head><title>Home | Auroxi</title></svelte:head>
 
 <Sidebar />
 
