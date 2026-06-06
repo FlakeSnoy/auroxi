@@ -5,6 +5,7 @@ import { requireGuest } from '$lib/server/auth/guards.js';
 import { validateEmail, validatePassword, validateUsername } from '$lib/server/auth/password.js';
 import { db } from '$lib/server/db/index.js';
 import { profile } from '$lib/server/db/schema.js';
+import { sql } from 'drizzle-orm';
 
 export const load: PageServerLoad = async (event) => {
   await requireGuest(event);
@@ -57,14 +58,20 @@ export const actions: Actions = {
       return fail(500, { error: 'Account created but session failed. Please login.', field: '' });
     }
 
-    // Fix: schema uses 'id' not 'userId' as the link — userId is a separate column
+    // Generate numeric profileId
+    const maxResult = await db.get<{ max: number | null }>(
+      sql`SELECT MAX(profile_id) as max FROM profile`
+    );
+    const profileId = (maxResult?.max ?? 0) + 1;
+
     await db.insert(profile).values({
+      profileId,
       username,
       displayName: name,
       school,
       grade,
       userId: session.user.id,
-    } as any);
+    });
 
     throw redirect(302, '/home');
   }

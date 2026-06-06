@@ -9,4 +9,4 @@
 
 <svelte:head><title>Home | Auroxi</title></svelte:head>
 
-<!-- dashboard components go here -->
+<!-- dashboard components go here --> 
