@@ -5,7 +5,6 @@ import { requireGuest } from '$lib/server/auth/guards.js';
 import { validateEmail, validatePassword, validateUsername } from '$lib/server/auth/password.js';
 import { db } from '$lib/server/db/index.js';
 import { profile } from '$lib/server/db/schema.js';
-import { getUser } from '$lib/server/auth/session.js';
 
 export const load: PageServerLoad = async (event) => {
   await requireGuest(event);
@@ -53,15 +52,17 @@ export const actions: Actions = {
       });
     }
 
-    const user = await getUser(event);
-    if (!user?.id) return fail(500, { error: 'Account created but session failed. Please login.', field: '' });
+    const resBody = await result.json() as { user?: { id: string } };
+    const userId = resBody?.user?.id;
+
+    if (!userId) return fail(500, { error: 'Could not get user ID after registration.', field: '' });
 
     await db.insert(profile).values({
       username,
       displayName: name,
       school,
       grade,
-      userId: user.id,
+      userId,
     });
 
     throw redirect(302, '/home');
