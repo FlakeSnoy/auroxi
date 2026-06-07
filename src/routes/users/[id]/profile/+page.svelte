@@ -4,7 +4,6 @@
   import ProfileBanner from '$lib/components/profile/ProfileBanner.svelte';
   import ProfileCard from '$lib/components/profile/ProfileCard.svelte';
   import BadgeDisplay from '$lib/components/profile/BadgeDisplay.svelte';
-  import EditProfileForm from '$lib/components/profile/EditProfileForm.svelte';
 
   type UserProfile = InferSelectModel<typeof profile>;
   type PageData = { userProfile: UserProfile | undefined; isOwner: boolean };
@@ -22,7 +21,6 @@
     <ProfileBanner {userProfile} {isOwner} />
     <ProfileCard {userProfile} {isOwner} />
 
-    <!-- Friends -->
     <div class="flex flex-col gap-3">
       <h2 class="text-zinc-400 text-xs font-semibold uppercase tracking-wide">Friends</h2>
       <p class="text-zinc-600 text-sm">No friends yet.</p>
@@ -30,15 +28,10 @@
 
     <BadgeDisplay {userProfile} />
 
-    <!-- Communities -->
     <div class="flex flex-col gap-3">
       <h2 class="text-zinc-400 text-xs font-semibold uppercase tracking-wide">Communities</h2>
       <p class="text-zinc-600 text-sm">Not in any communities yet.</p>
     </div>
-
-    {#if isOwner}
-      <EditProfileForm {userProfile} />
-    {/if}
 
   </div>
 </div>
