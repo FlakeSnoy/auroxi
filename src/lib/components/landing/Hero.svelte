@@ -3,179 +3,147 @@
   import { Badge } from '$lib/components/ui/badge/index.js';
   import * as Card from '$lib/components/ui/card/index.js';
 
-  import redSemi    from '$lib/assets/(background)/index-portal-red-semi.svg';
-  import red        from '$lib/assets/(background)/index-portal-red.svg';
-  import orangeSemi from '$lib/assets/(background)/index-portal-orange-semi.svg';
-  import orange     from '$lib/assets/(background)/index-portal-orange.svg';
-  import yellowSemi from '$lib/assets/(background)/index-portal-yellow-semi.svg';
-  import yellow     from '$lib/assets/(background)/index-portal-yellow.svg';
-  import greenSemi  from '$lib/assets/(background)/index-portal-green-semi.svg';
-  import green      from '$lib/assets/(background)/index-portal-green.svg';
-  import blueSemi   from '$lib/assets/(background)/index-portal-blue-semi.svg';
-  import blue       from '$lib/assets/(background)/index-portal-blue.svg';
+  let visible = $state(false);
+  onMount(() => requestAnimationFrame(() => { visible = true; }));
 
-  const rings = [
-    { src: redSemi,    size: 420, duration: 8,  reverse: false },
-    { src: red,        size: 388, duration: 10, reverse: true  },
-    { src: orangeSemi, size: 358, duration: 12, reverse: false },
-    { src: orange,     size: 330, duration: 14, reverse: true  },
-    { src: yellowSemi, size: 304, duration: 16, reverse: false },
-    { src: yellow,     size: 280, duration: 18, reverse: true  },
-    { src: greenSemi,  size: 258, duration: 20, reverse: false },
-    { src: green,      size: 238, duration: 22, reverse: true  },
-    { src: blueSemi,   size: 220, duration: 24, reverse: false },
-    { src: blue,       size: 204, duration: 26, reverse: true  },
+  const orbitals = [
+    { size: 340, duration: 12, reverse: false, color: '#3b82f6', dashes: '20 8' },
+    { size: 280, duration: 9,  reverse: true,  color: '#60a5fa', dashes: '12 6' },
+    { size: 220, duration: 15, reverse: false, color: '#1d4ed8', dashes: '6 10' },
+    { size: 160, duration: 7,  reverse: true,  color: '#93c5fd', dashes: '16 4' },
   ];
 
-  // Example note card — clearly labelled as example, not fake data
   const exampleNote = {
-    title: 'Example note — yours will appear here',
-    subject: 'Your Subject',
-    grade: 'Your Grade',
-    school: 'Your School',
-    description: 'Once you publish a note it shows up in the library tagged to your school and class. Other students can find it instantly.',
+    title: 'Photosynthesis — Complete Notes',
+    subject: 'Biology',
+    grade: 'Form 3',
+    school: 'Maru-a-Pula',
   };
-
-  let visible = $state(false);
-  onMount(() => { requestAnimationFrame(() => { visible = true; }); });
 </script>
 
 <style>
   @keyframes spin-cw  { to { transform: rotate(360deg);  } }
   @keyframes spin-ccw { to { transform: rotate(-360deg); } }
-  .ring {
-    position: absolute;
-    top: 50%; left: 50%;
-    translate: -50% -50%;
-    transform-origin: center center;
-    pointer-events: none;
-    user-select: none;
-    border: none !important;
-    outline: none !important;
-    box-shadow: none !important;
-    background: none !important;
-    display: block;
+  @keyframes pulse-glow {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
   }
-  .cw  { animation: spin-cw  linear infinite; }
-  .ccw { animation: spin-ccw linear infinite; }
+  .orbital-cw  { animation: spin-cw  linear infinite; transform-origin: center; }
+  .orbital-ccw { animation: spin-ccw linear infinite; transform-origin: center; }
+  .glow { animation: pulse-glow 3s ease-in-out infinite; }
 </style>
 
-<section class="min-h-screen bg-zinc-900 flex items-center px-6 relative overflow-hidden pt-24 pb-16">
+<section class="min-h-screen bg-zinc-950 flex items-center px-6 relative overflow-hidden pt-24 pb-16">
 
+  <!-- Subtle grid -->
   <div class="absolute inset-0 pointer-events-none"
-    style="background-image: radial-gradient(circle, #3f3f46 1px, transparent 1px);
-           background-size: 28px 28px; opacity: 0.25;"></div>
+    style="background-image:radial-gradient(circle,#3f3f4620 1px,transparent 1px);background-size:32px 32px;"></div>
+
+  <!-- Blue glow blob -->
+  <div class="absolute top-1/2 right-1/4 -translate-y-1/2 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none glow"></div>
 
   <div class="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center
-    transition-all duration-1000
-    {visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}">
+    transition-all duration-1000 {visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}">
 
-    <!-- LEFT: description -->
-    <div class="flex flex-col items-start">
-
-      <Badge variant="outline"
-        class="border-zinc-700 text-zinc-500 rounded-full px-3 py-1 mb-8 flex items-center gap-2 w-fit">
-        <span class="w-1.5 h-1.5 rounded-full bg-blue-400 inline-block"></span>
+    <!-- LEFT -->
+    <div class="flex flex-col gap-6">
+      <Badge variant="outline" class="border-blue-500/30 text-blue-400 rounded-full px-3 py-1 w-fit text-xs gap-2 flex items-center">
+        <span class="w-1.5 h-1.5 rounded-full bg-blue-400 inline-block animate-pulse"></span>
         Open to all students
       </Badge>
 
-      <h1 class="text-5xl lg:text-6xl font-black text-white leading-[1.06] tracking-tight mb-5">
+      <h1 class="text-5xl lg:text-6xl font-black text-white leading-[1.05] tracking-tight">
         Your school's<br/>knowledge,<br/>
         <span class="text-blue-400">shared.</span>
       </h1>
 
-      <p class="text-zinc-500 text-base leading-relaxed mb-8 max-w-sm">
-        Auroxi is a study platform where students publish notes tagged to their school,
-        grade and subject. Find notes from your class, join study groups,
-        chat with classmates and earn rewards for contributing.
+      <p class="text-zinc-500 text-base leading-relaxed max-w-sm">
+        Publish notes, join study groups, chat with classmates and earn Lunes rewards — all in one place built for students.
       </p>
 
-      <div class="flex items-center gap-6 mb-10 border-t border-zinc-800 pt-6 w-full">
+      <div class="flex items-center gap-6 border-t border-zinc-800 pt-5">
         <div>
-          <p class="text-zinc-300 font-bold text-sm">Notes library</p>
+          <p class="text-zinc-200 font-bold text-sm">Notes library</p>
           <p class="text-zinc-600 text-xs mt-0.5">Tagged by school & class</p>
         </div>
         <div class="w-px h-8 bg-zinc-800"></div>
         <div>
-          <p class="text-zinc-300 font-bold text-sm">Study groups</p>
+          <p class="text-zinc-200 font-bold text-sm">Study groups</p>
           <p class="text-zinc-600 text-xs mt-0.5">Join by subject</p>
         </div>
         <div class="w-px h-8 bg-zinc-800"></div>
         <div>
-          <p class="text-zinc-300 font-bold text-sm">Lunes</p>
+          <p class="text-zinc-200 font-bold text-sm">Lunes</p>
           <p class="text-zinc-600 text-xs mt-0.5">Daily rewards</p>
         </div>
       </div>
 
-      <!-- CTAs — underline hover only -->
-      <div class="flex items-center gap-8">
+      <div class="flex items-center gap-6">
         <a href="/register"
-          class="text-white font-black text-sm underline-offset-4 hover:underline transition-all">
+          class="bg-blue-600 hover:bg-blue-500 text-white font-black text-sm px-6 py-2.5 rounded-xl transition-all active:scale-95">
           Get started
         </a>
         <a href="#how-it-works"
-          class="text-zinc-500 font-medium text-sm underline-offset-4 hover:underline transition-all">
+          class="text-zinc-500 hover:text-zinc-300 font-medium text-sm transition-colors underline-offset-4 hover:underline">
           How it works
         </a>
       </div>
-
     </div>
 
-    <!-- RIGHT: orbital + example note card -->
-    <div class="flex flex-col items-center gap-8">
+    <!-- RIGHT: Atom orbital -->
+    <div class="flex flex-col items-center gap-10">
+      <div class="relative flex items-center justify-center" style="width:360px;height:360px;max-width:100%;">
 
-      <!-- Orbital ring -->
-      <div class="relative flex items-center justify-center shrink-0"
-        style="width: 420px; height: 420px; max-width: 100%;">
-        {#each rings as ring}
-          <img src={ring.src} alt="" aria-hidden="true"
-            class="ring {ring.reverse ? 'ccw' : 'cw'}"
-            style="width:{ring.size}px;height:{ring.size}px;animation-duration:{ring.duration}s;" />
-        {/each}
-        <div class="absolute inset-0 flex items-center justify-center z-10">
-          <img src="/favicon.svg" alt="Auroxi"
-            class="w-16 h-16 rounded-2xl shadow-2xl shadow-black/70 border-0 outline-none" />
+        <!-- SVG orbitals -->
+        <svg class="absolute inset-0 w-full h-full" viewBox="0 0 360 360" fill="none">
+          {#each orbitals as o, i}
+            <circle
+              cx="180" cy="180" r={o.size / 2}
+              stroke={o.color}
+              stroke-width="1.5"
+              stroke-dasharray={o.dashes}
+              opacity="0.5"
+              class="{o.reverse ? 'orbital-ccw' : 'orbital-cw'}"
+              style="animation-duration:{o.duration}s"
+            />
+          {/each}
+
+          <!-- Electron dots orbiting -->
+          <g class="orbital-cw" style="animation-duration:6s">
+            <circle cx="180" cy="10" r="5" fill="#3b82f6" opacity="0.9"/>
+          </g>
+          <g class="orbital-ccw" style="animation-duration:9s">
+            <circle cx="350" cy="180" r="4" fill="#60a5fa" opacity="0.7"/>
+          </g>
+          <g class="orbital-cw" style="animation-duration:12s">
+            <circle cx="180" cy="350" r="3.5" fill="#93c5fd" opacity="0.6"/>
+          </g>
+        </svg>
+
+        <!-- Center logo -->
+        <div class="relative z-10 w-20 h-20 rounded-2xl bg-zinc-900 border border-zinc-700 shadow-2xl shadow-blue-900/30 flex items-center justify-center">
+          <img src="/favicon.svg" alt="Auroxi" class="w-12 h-12 rounded-xl" />
         </div>
       </div>
 
-      <!-- Example note card — half square, book thumbnail -->
-      <Card.Root class="w-full max-w-xs bg-zinc-800/50 border-zinc-700/60 rounded-xl overflow-hidden">
-        <!-- Top half: thumbnail -->
-        <div class="aspect-video bg-zinc-800 border-b border-zinc-700/60 flex items-center justify-center relative">
-          <!-- Book SVG from jsdelivr -->
-          <img
-            src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/svgs/solid/book-open.svg"
-            alt="Note thumbnail"
-            class="w-12 h-12 opacity-20 invert"
-          />
-          <!-- Example label -->
-          <div class="absolute top-2 left-2">
-            <Badge variant="outline" class="text-zinc-500 border-zinc-700 text-[10px] rounded-full px-2 py-0">
-              Example
-            </Badge>
-          </div>
-          <!-- Auroxi logo circle bottom right -->
-          <div class="absolute bottom-2 right-2 w-7 h-7 rounded-full bg-zinc-900 border border-zinc-700
-            flex items-center justify-center">
-            <img src="/favicon.svg" alt="" class="w-4 h-4 rounded-sm border-0 outline-none" />
-          </div>
-        </div>
-        <!-- Bottom half: content -->
-        <Card.Content class="p-3">
-          <Badge variant="outline" class="text-zinc-500 border-zinc-700 text-[10px] rounded-full px-2 py-0 mb-2">
+      <!-- Example note card -->
+      <Card.Root class="w-full max-w-xs bg-zinc-900 border-zinc-800 rounded-2xl overflow-hidden">
+        <div class="aspect-video bg-zinc-800 border-b border-zinc-800 flex items-center justify-center relative">
+          <img src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/svgs/solid/book-open.svg"
+            alt="" class="w-10 h-10 opacity-10 invert" />
+          <Badge variant="outline" class="absolute top-2 left-2 text-zinc-500 border-zinc-700 text-[10px] rounded-full">
+            Example
+          </Badge>
+          <Badge variant="outline" class="absolute top-2 right-2 text-blue-400 border-blue-500/20 text-[10px] rounded-full bg-blue-500/10">
             {exampleNote.subject}
           </Badge>
-          <p class="text-zinc-200 font-semibold text-sm mb-1 leading-snug">{exampleNote.title}</p>
-          <p class="text-zinc-600 text-[11px] leading-relaxed mb-2">{exampleNote.description}</p>
-          <div class="flex items-center gap-1 text-zinc-700 text-[10px]">
-            <svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-            </svg>
-            {exampleNote.school} · {exampleNote.grade}
-          </div>
+        </div>
+        <Card.Content class="p-3">
+          <p class="text-zinc-200 font-semibold text-sm mb-1">{exampleNote.title}</p>
+          <p class="text-zinc-600 text-xs">{exampleNote.school} · {exampleNote.grade}</p>
         </Card.Content>
       </Card.Root>
-
     </div>
+
   </div>
 </section>
