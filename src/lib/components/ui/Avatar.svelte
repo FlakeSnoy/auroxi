@@ -1,6 +1,6 @@
 <script lang="ts">
   const { src, name, size = 8 }: { src?: string; name?: string; size?: number } = $props();
-  const px = $derived(size * 6);
+  const px = $derived(size * 5);
   const fontSize = $derived(Math.max(px / 3, 12));
 </script>
 
