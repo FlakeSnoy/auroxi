@@ -6,11 +6,11 @@
   const { children } = $props();
 </script>
 
-<div class="min-h-screen bg-zinc-900 flex">
+<div class="h-screen bg-zinc-900 flex overflow-hidden">
   <Sidebar />
   <Frame>
     <Navbar />
-    <main class="flex-1 p-6 flex flex-col gap-6">
+    <main class="flex-1 overflow-y-auto">
       {@render children()}
     </main>
   </Frame>
