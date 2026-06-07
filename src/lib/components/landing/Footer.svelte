@@ -1,7 +1,6 @@
 <script lang="ts">
   import { Badge } from '$lib/components/ui/badge/index.js';
   import { Separator } from '$lib/components/ui/separator/index.js';
-  import * as Card from '$lib/components/ui/card/index.js';
 
   let email = $state('');
   let submitted = $state(false);
@@ -25,71 +24,113 @@
       { label: 'Community Guidelines', href: '/guidelines' },
       { label: 'Moderation Policy',    href: '/moderation' },
     ],
+    company: [
+      { label: 'About',     href: '/about/information' },
+      { label: 'Newsroom',  href: '/newsroom' },
+      { label: 'GitHub',    href: 'https://github.com/Anthro-labs' },
+    ],
   };
 </script>
 
-<footer class="bg-zinc-950 border-t border-zinc-800/40 px-6 pt-16 pb-10">
-  <div class="max-w-5xl mx-auto flex flex-col gap-10">
+<footer class="bg-zinc-950 border-t border-zinc-800/40">
 
-    <div class="grid grid-cols-1 sm:grid-cols-4 gap-10">
-      <div class="sm:col-span-2 flex flex-col gap-5">
-        <a href="/" class="flex items-center gap-3">
-          <img src="/favicon.svg" alt="Auroxi" class="w-9 h-9 rounded-xl" />
-          <div class="flex flex-col leading-none">
-            <span class="text-white font-black text-base">Auroxi</span>
-            <span class="text-zinc-600 text-xs">by Anthro-labs</span>
-          </div>
+  <!-- CTA band -->
+  <div class="border-b border-zinc-800/40 py-20 px-6">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-8">
+      <div>
+        <h2 class="text-3xl sm:text-4xl font-black text-white mb-2">Ready to study smarter?</h2>
+        <p class="text-zinc-500 text-base">Join thousands of students sharing knowledge on Auroxi.</p>
+      </div>
+      <div class="flex items-center gap-3 shrink-0">
+        <a href="/login" class="text-zinc-400 hover:text-white text-sm font-medium transition-colors px-4 py-2.5 border border-zinc-800 rounded-xl hover:border-zinc-600">
+          Login
         </a>
+        <a href="/register" class="bg-blue-600 hover:bg-blue-500 text-white font-black text-sm px-6 py-2.5 rounded-xl transition-all active:scale-95">
+          Get started free
+        </a>
+      </div>
+    </div>
+  </div>
 
-        <p class="text-zinc-500 text-sm leading-relaxed max-w-xs">
-          The student platform where knowledge is shared, connections are made and studying feels rewarding.
-        </p>
+  <!-- Main footer -->
+  <div class="py-16 px-6">
+    <div class="max-w-6xl mx-auto">
 
-        <Card.Root class="bg-zinc-900 border-zinc-800 rounded-xl p-4">
-          <Card.Content class="p-0">
+      <div class="grid grid-cols-2 sm:grid-cols-5 gap-10 mb-14">
+
+        <!-- Brand -->
+        <div class="col-span-2 flex flex-col gap-5">
+          <a href="/" class="flex items-center gap-3 w-fit">
+            <img src="/favicon.svg" alt="Auroxi" class="w-10 h-10 rounded-xl" />
+            <div>
+              <p class="text-white font-black text-base leading-none">Auroxi</p>
+              <p class="text-zinc-600 text-xs mt-0.5">by Anthro-labs</p>
+            </div>
+          </a>
+
+          <p class="text-zinc-500 text-sm leading-relaxed max-w-xs">
+            The student platform where knowledge is shared, connections are made and studying feels rewarding.
+          </p>
+
+          <!-- Newsletter -->
+          <div class="flex flex-col gap-2">
+            <p class="text-zinc-400 text-xs font-semibold uppercase tracking-widest">Stay in the loop</p>
             {#if submitted}
-              <p class="text-zinc-400 text-sm">You're on the list — we'll be in touch.</p>
+              <p class="text-zinc-500 text-sm">You're on the list ✓</p>
             {:else}
-              <p class="text-zinc-400 text-xs font-semibold uppercase tracking-widest mb-3">Stay in the loop</p>
               <div class="flex gap-2">
                 <input type="email" bind:value={email} placeholder="your@email.com"
-                  class="flex-1 bg-zinc-800 border border-zinc-700 rounded-xl px-3 py-2 text-zinc-300 text-sm placeholder-zinc-600 focus:outline-none focus:border-blue-500 transition-colors" />
+                  class="flex-1 bg-zinc-900 border border-zinc-800 rounded-xl px-3 py-2 text-zinc-300 text-sm placeholder-zinc-600 focus:outline-none focus:border-blue-500 transition-colors min-w-0" />
                 <button onclick={handleSubscribe}
                   class="bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs px-4 rounded-xl transition-all shrink-0">
                   Notify me
                 </button>
               </div>
-              {#if error}<p class="text-red-400 text-xs mt-2">{error}</p>{/if}
+              {#if error}<p class="text-red-400 text-xs">{error}</p>{/if}
             {/if}
-          </Card.Content>
-        </Card.Root>
+          </div>
+        </div>
+
+        <!-- Platform -->
+        <div class="flex flex-col gap-4">
+          <p class="text-zinc-300 font-bold text-xs uppercase tracking-widest">Platform</p>
+          <ul class="flex flex-col gap-3">
+            {#each links.platform as link}
+              <li><a href={link.href} class="text-zinc-500 hover:text-zinc-200 text-sm transition-colors">{link.label}</a></li>
+            {/each}
+          </ul>
+        </div>
+
+        <!-- Company -->
+        <div class="flex flex-col gap-4">
+          <p class="text-zinc-300 font-bold text-xs uppercase tracking-widest">Company</p>
+          <ul class="flex flex-col gap-3">
+            {#each links.company as link}
+              <li><a href={link.href} class="text-zinc-500 hover:text-zinc-200 text-sm transition-colors">{link.label}</a></li>
+            {/each}
+          </ul>
+        </div>
+
+        <!-- Legal -->
+        <div class="flex flex-col gap-4">
+          <p class="text-zinc-300 font-bold text-xs uppercase tracking-widest">Legal</p>
+          <ul class="flex flex-col gap-3">
+            {#each links.legal as link}
+              <li><a href={link.href} class="text-zinc-500 hover:text-zinc-200 text-sm transition-colors">{link.label}</a></li>
+            {/each}
+          </ul>
+        </div>
+
       </div>
 
-      <div>
-        <p class="text-zinc-400 font-bold text-xs uppercase tracking-widest mb-4">Platform</p>
-        <ul class="space-y-2.5">
-          {#each links.platform as link}
-            <li><a href={link.href} class="text-zinc-500 hover:text-zinc-300 text-sm transition-colors">{link.label}</a></li>
-          {/each}
-        </ul>
+      <Separator class="bg-zinc-800/60 mb-6" />
+
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
+        <p class="text-zinc-600 text-xs">© {new Date().getFullYear()} Auroxi · Anthro-labs. All rights reserved.</p>
+        <Badge variant="outline" class="border-zinc-800 text-zinc-700 text-xs rounded-full px-3">Made for students, by students.</Badge>
       </div>
 
-      <div>
-        <p class="text-zinc-400 font-bold text-xs uppercase tracking-widest mb-4">Legal</p>
-        <ul class="space-y-2.5">
-          {#each links.legal as link}
-            <li><a href={link.href} class="text-zinc-500 hover:text-zinc-300 text-sm transition-colors">{link.label}</a></li>
-          {/each}
-        </ul>
-      </div>
     </div>
-
-    <Separator class="bg-zinc-800" />
-
-    <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
-      <p class="text-zinc-600 text-xs">© {new Date().getFullYear()} Auroxi · Anthro-labs. All rights reserved.</p>
-      <Badge variant="outline" class="border-zinc-800 text-zinc-700 text-xs rounded-full">Made for students, by students.</Badge>
-    </div>
-
   </div>
+
 </footer>
