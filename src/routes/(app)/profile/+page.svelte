@@ -6,8 +6,8 @@
   import BadgeDisplay from '$lib/components/profile/BadgeDisplay.svelte';
   import EditProfileForm from '$lib/components/profile/EditProfileForm.svelte';
 
-  type Profile = InferSelectModel<typeof profile>;
-  type PageData = { userProfile: Profile | undefined; isOwner: boolean };
+  type UserProfile = InferSelectModel<typeof profile>;
+  type PageData = { userProfile: UserProfile | undefined; isOwner: boolean };
 
   const { data }: { data: PageData } = $props();
   const userProfile = $derived(data.userProfile);
