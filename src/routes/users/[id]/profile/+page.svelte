@@ -16,11 +16,13 @@
 
 <svelte:head><title>@{userProfile?.username ?? 'Profile'} — Auroxi</title></svelte:head>
 
-<div class="p-6 max-w-2xl mx-auto flex flex-col gap-6">
-  <ProfileBanner {userProfile} />
-  <ProfileCard {userProfile} />
-  <BadgeDisplay {userProfile} />
-  {#if isOwner}
-    <EditProfileForm {userProfile} />
-  {/if}
+<div class="min-h-screen bg-zinc-900 p-6">
+  <div class="max-w-2xl mx-auto flex flex-col gap-6">
+    <ProfileBanner {userProfile} />
+    <ProfileCard {userProfile} />
+    <BadgeDisplay {userProfile} />
+    {#if isOwner}
+      <EditProfileForm {userProfile} />
+    {/if}
+  </div>
 </div>
