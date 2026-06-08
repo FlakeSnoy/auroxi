@@ -3,16 +3,16 @@
   import { Badge } from '$lib/components/ui/badge/index.js';
   import * as Card from '$lib/components/ui/card/index.js';
 
-  import redSemi    from '$lib/assets/(background)/index-portal-red-semi.svg';
-  import red        from '$lib/assets/(background)/index-portal-red.svg';
-  import orangeSemi from '$lib/assets/(background)/index-portal-orange-semi.svg';
-  import orange     from '$lib/assets/(background)/index-portal-orange.svg';
-  import yellowSemi from '$lib/assets/(background)/index-portal-yellow-semi.svg';
-  import yellow     from '$lib/assets/(background)/index-portal-yellow.svg';
-  import greenSemi  from '$lib/assets/(background)/index-portal-green-semi.svg';
-  import green      from '$lib/assets/(background)/index-portal-green.svg';
-  import blueSemi   from '$lib/assets/(background)/index-portal-blue-semi.svg';
-  import blue       from '$lib/assets/(background)/index-portal-blue.svg';
+ import redSemi    from '$lib/assets/backgrounds/index-portal-red-semi.svg';
+ import red        from '$lib/assets/backgrounds/index-portal-red.svg';
+ import orangeSemi from '$lib/assets/backgrounds/index-portal-orange-semi.svg';
+ import orange     from '$lib/assets/backgrounds/index-portal-orange.svg';
+ import yellowSemi from '$lib/assets/backgrounds/index-portal-yellow-semi.svg';
+ import yellow     from '$lib/assets/backgrounds/index-portal-yellow.svg';
+ import greenSemi  from '$lib/assets/backgrounds/index-portal-green-semi.svg';
+ import green      from '$lib/assets/backgrounds/index-portal-green.svg';
+ import blueSemi   from '$lib/assets/backgrounds/index-portal-blue-semi.svg';
+ import blue       from '$lib/assets/backgrounds/index-portal-blue.svg';
 
   const rings = [
     { src: redSemi,    size: 500, duration: 8,  reverse: false },
