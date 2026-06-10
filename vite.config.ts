@@ -13,10 +13,6 @@ export default defineConfig({
 	assetsInclude: ['**/*.svg'],
 
 	optimizeDeps: {
-		exclude: ['bits-ui'],
-	},
-
-	ssr: {
-		noExternal: ['bits-ui'],
-	},
+		include: ['bits-ui']
+	}
 });
