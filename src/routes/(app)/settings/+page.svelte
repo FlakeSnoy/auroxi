@@ -46,10 +46,10 @@
 	role="dialog"
 	aria-modal="true"
 	aria-label="Settings"
+	tabindex="0"
 	class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4"
 	onkeydown={(e) => { if (e.key === 'Escape') close(); }}
 >
-	<!-- Backdrop click -->
 	<div class="absolute inset-0 -z-10" role="presentation" onclick={close}></div>
 
 	<div class="bg-zinc-900 border border-zinc-800 rounded-2xl w-full max-w-5xl h-[85vh] flex overflow-hidden shadow-2xl">
