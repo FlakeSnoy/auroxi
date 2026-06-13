@@ -49,7 +49,7 @@
 >
 	<div class="absolute inset-0 -z-10" role="presentation" onclick={close}></div>
 
-	<div class="w-full h-full flex overflow-hidden bg-zinc-950">
+	<div class="w-full h-full flex overflow-hidden bg-zinc-900">
 
 		<!-- Sidebar -->
 		<div class="w-64 shrink-0 bg-zinc-950 border-r border-zinc-800/60 flex flex-col">
