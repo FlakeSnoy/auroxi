@@ -73,6 +73,7 @@
 		"cloudinary": "^2.10.0",
 		"drizzle-graphql": "^0.8.5",
 		"graphql": "^16.14.0",
+		"lucide-svelte": "^1.0.1",
 		"socket.io": "^4.8.3",
 		"socket.io-client": "^4.8.3"
 	}
