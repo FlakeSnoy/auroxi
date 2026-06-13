@@ -67,7 +67,7 @@
 >
 	<div class="absolute inset-0 -z-10" role="presentation" onclick={close}></div>
 
-	<div class="w-full h-full flex overflow-hidden bg-zinc-950">
+	<div class="w-full h-full flex overflow-hidden bg-zinc-900">
 
 		<!-- Sidebar -->
 		<div class="w-60 shrink-0 border-r border-zinc-800/50 flex flex-col py-6">
@@ -111,7 +111,7 @@
 		</div>
 
 		<!-- Content -->
-		<div class="flex-1 flex flex-col overflow-hidden bg-zinc-950">
+		<div class="flex-1 flex flex-col overflow-hidden bg-zinc-900">
 
 			<!-- Header -->
 			<div class="flex items-center justify-between px-10 py-5 border-b border-zinc-800/50 shrink-0">
