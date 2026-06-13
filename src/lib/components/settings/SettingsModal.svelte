@@ -76,7 +76,7 @@
 		</div>
 
 		<!-- Content -->
-		<div class="flex-1 flex flex-col overflow-hidden bg-zinc-950">
+		<div class="flex-1 flex flex-col overflow-hidden bg-zinc-900">
 
 			<div class="flex items-center justify-between px-10 py-5 border-b border-zinc-800/60 shrink-0">
 				<h2 class="text-white font-bold text-xl capitalize">{activeTab.replace('-', ' ')}</h2>
