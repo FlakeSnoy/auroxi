@@ -24,7 +24,7 @@
 					variant="outline"
 					class="bg-zinc-900/80 backdrop-blur border-zinc-700 text-white hover:bg-zinc-800 rounded-full text-xs px-4 h-8"
 				>
-					Edit profile
+					Edit banner
 				</Button>
 			</div>
 		{/if}
