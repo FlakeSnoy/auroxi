@@ -8,6 +8,16 @@
 	import SubscriptionTab   from './tabs/SubscriptionTab.svelte';
 	import SystemMessagesTab from './tabs/SystemMessagesTab.svelte';
 
+	import {
+		User,
+		Shield,
+		Lock,
+		Bell,
+		CreditCard,
+		MessageSquare,
+		X,
+	} from 'lucide-svelte';
+
 	const { userProfile, form, activeTab: initialTab }: {
 		userProfile: any;
 		form: any;
@@ -15,12 +25,12 @@
 	} = $props();
 
 	const tabs = [
-		{ id: 'account',         label: 'Account' },
-		{ id: 'security',        label: 'Security' },
-		{ id: 'privacy',         label: 'Privacy' },
-		{ id: 'notifications',   label: 'Notifications' },
-		{ id: 'subscription',    label: 'Subscription' },
-		{ id: 'system-messages', label: 'System Messages' },
+		{ id: 'account',         label: 'Account',         icon: User },
+		{ id: 'security',        label: 'Security',        icon: Shield },
+		{ id: 'privacy',         label: 'Privacy',         icon: Lock },
+		{ id: 'notifications',   label: 'Notifications',   icon: Bell },
+		{ id: 'subscription',    label: 'Subscription',    icon: CreditCard },
+		{ id: 'system-messages', label: 'System Messages', icon: MessageSquare },
 	];
 
 	let activeTab = $state('account');
@@ -61,10 +71,11 @@
 					<button
 						type="button"
 						onclick={() => setTab(tab.id)}
-						class="px-3 py-2.5 rounded-lg text-sm text-left transition-all {activeTab === tab.id
-							? 'bg-zinc-800 text-white font-semibold'
+						class="px-3 py-2.5 rounded-lg text-sm text-left transition-all flex items-center gap-3 {activeTab === tab.id
+							? 'bg-blue-600/15 text-blue-400 font-semibold'
 							: 'text-zinc-500 hover:text-zinc-200 hover:bg-zinc-800/40'}"
 					>
+						<tab.icon size={15} class="{activeTab === tab.id ? 'text-blue-400' : 'text-zinc-600'} shrink-0" />
 						{tab.label}
 					</button>
 				{/each}
@@ -83,9 +94,9 @@
 				<button
 					type="button"
 					onclick={close}
-					class="w-9 h-9 rounded-xl flex items-center justify-center text-zinc-500 hover:text-white hover:bg-zinc-800 transition-all text-lg"
+					class="w-9 h-9 rounded-xl flex items-center justify-center text-zinc-500 hover:text-white hover:bg-zinc-800 transition-all"
 				>
-					✕
+					<X size={16} />
 				</button>
 			</div>
 
