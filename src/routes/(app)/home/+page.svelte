@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { PageData } from './$types.js';
 	import { FriendsRow } from '$lib/components/friends/index.js';
-  import { RecommendedUsers } from '$lib/components/recommended/RecommendedUsers.svelte';
+	import RecommendedUsers from '$lib/components/recommended/RecommendedUsers.svelte';
 
 	const { data }: { data: PageData } = $props();
 </script>
