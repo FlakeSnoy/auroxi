@@ -44,17 +44,17 @@
 	aria-modal="true"
 	aria-label="Settings"
 	tabindex="0"
-	class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md"
+	class="fixed inset-0 z-50 flex bg-black/80 backdrop-blur-md"
 	onkeydown={(e) => { if (e.key === 'Escape') close(); }}
 >
 	<div class="absolute inset-0 -z-10" role="presentation" onclick={close}></div>
 
-	<div class="bg-zinc-950 w-full h-full flex overflow-hidden">
+	<div class="w-full h-full flex overflow-hidden bg-zinc-950">
 
 		<!-- Sidebar -->
-		<div class="w-64 shrink-0 bg-zinc-900 border-r border-zinc-800 flex flex-col">
+		<div class="w-64 shrink-0 bg-zinc-950 border-r border-zinc-800/60 flex flex-col">
 			<div class="px-6 pt-8 pb-4">
-				<p class="text-xs text-zinc-500 font-bold uppercase tracking-widest">User Settings</p>
+				<p class="text-xs text-zinc-600 font-bold uppercase tracking-widest">User Settings</p>
 			</div>
 			<div class="flex-1 overflow-y-auto px-3 flex flex-col gap-0.5">
 				{#each tabs as tab (tab.id)}
@@ -63,27 +63,27 @@
 						onclick={() => setTab(tab.id)}
 						class="px-3 py-2.5 rounded-lg text-sm text-left transition-all {activeTab === tab.id
 							? 'bg-zinc-800 text-white font-semibold'
-							: 'text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800/60'}"
+							: 'text-zinc-500 hover:text-zinc-200 hover:bg-zinc-800/40'}"
 					>
 						{tab.label}
 					</button>
 				{/each}
 			</div>
-			<Separator class="bg-zinc-800" />
+			<Separator class="bg-zinc-800/60" />
 			<div class="px-6 py-4">
 				<p class="text-xs text-zinc-700">v0.0.1</p>
 			</div>
 		</div>
 
 		<!-- Content -->
-		<div class="flex-1 flex flex-col overflow-hidden">
+		<div class="flex-1 flex flex-col overflow-hidden bg-zinc-950">
 
-			<div class="flex items-center justify-between px-10 py-5 border-b border-zinc-800 shrink-0">
+			<div class="flex items-center justify-between px-10 py-5 border-b border-zinc-800/60 shrink-0">
 				<h2 class="text-white font-bold text-xl capitalize">{activeTab.replace('-', ' ')}</h2>
 				<button
 					type="button"
 					onclick={close}
-					class="w-9 h-9 rounded-xl flex items-center justify-center text-zinc-400 hover:text-white hover:bg-zinc-800 transition-all text-lg font-bold"
+					class="w-9 h-9 rounded-xl flex items-center justify-center text-zinc-500 hover:text-white hover:bg-zinc-800 transition-all text-lg"
 				>
 					✕
 				</button>
