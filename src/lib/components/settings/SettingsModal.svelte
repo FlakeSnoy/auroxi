@@ -52,7 +52,7 @@
 	<div class="w-full h-full flex overflow-hidden bg-zinc-900">
 
 		<!-- Sidebar -->
-		<div class="w-64 shrink-0 bg-zinc-950 border-r border-zinc-800/60 flex flex-col">
+		<div class="w-64 shrink-0 bg-zinc-900 border-r border-zinc-800/60 flex flex-col">
 			<div class="px-6 pt-8 pb-4">
 				<p class="text-xs text-zinc-600 font-bold uppercase tracking-widest">User Settings</p>
 			</div>
