@@ -12,39 +12,38 @@
 
 <svelte:head><title>Login — Auroxi</title></svelte:head>
 
-<div class="min-h-screen bg-zinc-950 flex items-center justify-center px-4">
+<div class="min-h-screen flex items-center justify-center px-4" style="background:#F5F0E8">
   <div class="w-full max-w-sm flex flex-col gap-6">
 
     <div class="flex flex-col items-center gap-3 text-center">
       <img src="/favicon.svg" alt="Auroxi" class="w-10 h-10 rounded-xl" />
       <div>
-        <h1 class="text-white text-2xl font-black tracking-tight">Welcome back</h1>
-        <p class="text-zinc-500 text-sm mt-1">Login to your Auroxi account.</p>
+        <h1 class="text-2xl font-black tracking-tight" style="color:#1a1a1a">Welcome back</h1>
+        <p class="text-sm mt-1" style="color:#6b6b6b">Login to your Auroxi account.</p>
       </div>
     </div>
 
     {#if form?.error}
-      <p class="text-red-400 text-xs bg-red-500/10 border border-red-500/20 rounded-xl px-3 py-2 text-center">{form.error}</p>
+      <p class="text-xs px-3 py-2 rounded-xl text-center" style="color:#dc2626; background:#fee2e2; border:1px solid #fecaca">{form.error}</p>
     {/if}
 
-    <form
-      method="POST"
-      use:enhance={() => { loading = true; return async ({ update }) => { await update(); loading = false; }; }}
-      class="flex flex-col gap-3"
-    >
+    <form method="POST" use:enhance={() => { loading = true; return async ({ update }) => { await update(); loading = false; }; }} class="flex flex-col gap-3">
+
       <div class="flex flex-col gap-1.5">
-        <Label for="email" class="text-zinc-400 text-xs">Email</Label>
+        <Label for="email" class="text-xs" style="color:#6b6b6b">Email</Label>
         <Input id="email" name="email" type="email" placeholder="you@email.com" required
-          class="bg-zinc-900 border-zinc-800 rounded-xl h-10 text-zinc-200 placeholder:text-zinc-600 text-sm focus:border-blue-500 {form?.field === 'email' ? 'border-red-500/50' : ''}" />
+          class="rounded-xl h-10 text-sm {form?.field === 'email' ? 'border-red-400' : ''}"
+          style="background:#EDE8DF; border-color:#DDD8CF; color:#1a1a1a" />
       </div>
 
       <div class="flex flex-col gap-1.5">
         <div class="flex items-center justify-between">
-          <Label for="password" class="text-zinc-400 text-xs">Password</Label>
-          <a href="/forgot-password" class="text-zinc-500 hover:text-zinc-400 text-xs transition-colors">Forgot?</a>
+          <Label for="password" class="text-xs" style="color:#6b6b6b">Password</Label>
+          <a href="/forgot-password" class="text-xs transition-colors hover:opacity-70" style="color:#9a9a9a">Forgot?</a>
         </div>
         <Input id="password" name="password" type="password" placeholder="Your password" required
-          class="bg-zinc-900 border-zinc-800 rounded-xl h-10 text-zinc-200 placeholder:text-zinc-600 text-sm focus:border-blue-500" />
+          class="rounded-xl h-10 text-sm"
+          style="background:#EDE8DF; border-color:#DDD8CF; color:#1a1a1a" />
       </div>
 
       <Button type="submit" disabled={loading}
@@ -53,6 +52,6 @@
       </Button>
     </form>
 
-    <p class="text-zinc-600 text-xs text-center">Don't have an account? <a href="/register" class="text-blue-500 hover:text-blue-400 font-medium transition-colors">Sign up</a></p>
+    <p class="text-xs text-center" style="color:#9a9a9a">Don't have an account? <a href="/register" class="font-medium" style="color:#3b82f6">Sign up</a></p>
   </div>
 </div>
