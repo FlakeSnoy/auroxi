@@ -27,30 +27,33 @@
       <p class="text-xs px-3 py-2 rounded-xl text-center" style="color:#dc2626; background:#fee2e2; border:1px solid #fecaca">{form.error}</p>
     {/if}
 
-    <form method="POST" use:enhance={() => { loading = true; return async ({ update }) => { await update(); loading = false; }; }} class="flex flex-col gap-3">
+    <div class="flex flex-col gap-3 p-6 rounded-2xl" style="background:#EDE8DF; border:1px solid #D5CFC6">
 
-      <div class="flex flex-col gap-1.5">
-        <Label for="email" class="text-xs" style="color:#6b6b6b">Email</Label>
-        <Input id="email" name="email" type="email" placeholder="you@email.com" required
-          class="rounded-xl h-10 text-sm {form?.field === 'email' ? 'border-red-400' : ''}"
-          style="background:#EDE8DF; border-color:#DDD8CF; color:#1a1a1a" />
-      </div>
+      <form method="POST" use:enhance={() => { loading = true; return async ({ update }) => { await update(); loading = false; }; }} class="flex flex-col gap-3">
 
-      <div class="flex flex-col gap-1.5">
-        <div class="flex items-center justify-between">
-          <Label for="password" class="text-xs" style="color:#6b6b6b">Password</Label>
-          <a href="/forgot-password" class="text-xs transition-colors hover:opacity-70" style="color:#9a9a9a">Forgot?</a>
+        <div class="flex flex-col gap-1.5">
+          <Label for="email" class="text-xs" style="color:#6b6b6b">Email</Label>
+          <Input id="email" name="email" type="email" placeholder="you@email.com" required
+            class="rounded-xl h-10 text-sm {form?.field === 'email' ? 'border-red-400' : ''}"
+            style="background:#F5F0E8; border-color:#D5CFC6; color:#1a1a1a" />
         </div>
-        <Input id="password" name="password" type="password" placeholder="Your password" required
-          class="rounded-xl h-10 text-sm"
-          style="background:#EDE8DF; border-color:#DDD8CF; color:#1a1a1a" />
-      </div>
 
-      <Button type="submit" disabled={loading}
-        class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl h-10 text-sm mt-1 transition-all active:scale-95 disabled:opacity-50">
-        {loading ? 'Logging in...' : 'Login'}
-      </Button>
-    </form>
+        <div class="flex flex-col gap-1.5">
+          <div class="flex items-center justify-between">
+            <Label for="password" class="text-xs" style="color:#6b6b6b">Password</Label>
+            <a href="/forgot-password" class="text-xs transition-colors hover:opacity-70" style="color:#9a9a9a">Forgot?</a>
+          </div>
+          <Input id="password" name="password" type="password" placeholder="Your password" required
+            class="rounded-xl h-10 text-sm"
+            style="background:#F5F0E8; border-color:#D5CFC6; color:#1a1a1a" />
+        </div>
+
+        <Button type="submit" disabled={loading}
+          class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl h-10 text-sm mt-1 transition-all active:scale-95 disabled:opacity-50">
+          {loading ? 'Logging in...' : 'Login'}
+        </Button>
+      </form>
+    </div>
 
     <p class="text-xs text-center" style="color:#9a9a9a">Don't have an account? <a href="/register" class="font-medium" style="color:#3b82f6">Sign up</a></p>
   </div>
