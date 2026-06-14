@@ -39,7 +39,7 @@
 		"@better-auth/cli": "~1.4.21",
 		"@fontsource-variable/geist": "^5.2.9",
 		"@internationalized/date": "^3.12.2",
-		"@libsql/client": "^0.17.2",
+		"@libsql/client": "^0.17.3",
 		"@lucide/svelte": "^1.18.0",
 		"@sveltejs/adapter-auto": "^7.0.1",
 		"@sveltejs/kit": "^2.57.0",
