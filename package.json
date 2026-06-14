@@ -42,7 +42,6 @@
 		"@libsql/client": "^0.17.2",
 		"@lucide/svelte": "^1.18.0",
 		"@sveltejs/adapter-auto": "^7.0.1",
-		"@sveltejs/adapter-node": "^5.5.4",
 		"@sveltejs/kit": "^2.57.0",
 		"@sveltejs/package": "^2.5.7",
 		"@sveltejs/vite-plugin-svelte": "^7.0.0",
@@ -69,6 +68,7 @@
 	],
 	"dependencies": {
 		"@apollo/server": "^5.5.1",
+		"@sveltejs/adapter-vercel": "^6.3.3",
 		"bits-ui": "^2.18.1",
 		"cloudinary": "^2.10.0",
 		"drizzle-graphql": "^0.8.5",
