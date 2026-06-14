@@ -3,7 +3,7 @@
   import ProfileDropdown from '$lib/components/layout/ProfileDropdown.svelte';
 </script>
 
-<header class="h-14 flex items-center justify-center relative px-6 bg-zinc-900 sticky top-0 z-30 border-b border-zinc-800/50 shrink-0">
+<header class="h-14 flex items-center justify-center px-6 bg-zinc-900 sticky top-0 z-30 border-b border-zinc-800/50 shrink-0">
   <div class="w-96">
     <SearchBar />
   </div>
