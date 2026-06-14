@@ -4,11 +4,20 @@ import { auth } from '$lib/server/auth.js';
 import { svelteKitHandler } from 'better-auth/svelte-kit';
 
 const handleBetterAuth: Handle = async ({ event, resolve }) => {
-	const session = await auth.api.getSession({ headers: event.request.headers });
+	const pathname = event.url.pathname;
+	const isStaticAsset = pathname.includes('.') || pathname === '/favicon.ico';
 
-	if (session) {
-		event.locals.session = session.session;
-		event.locals.user = session.user;
+	if (!isStaticAsset) {
+		try {
+			const session = await auth.api.getSession({ headers: event.request.headers });
+
+			if (session) {
+				event.locals.session = session.session;
+				event.locals.user = session.user;
+			}
+		} catch {
+			// Allow public pages to render even if the auth database is temporarily unavailable.
+		}
 	}
 
 	return svelteKitHandler({ event, resolve, auth, building });
