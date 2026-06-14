@@ -1,14 +1,18 @@
 import { drizzle } from 'drizzle-orm/libsql';
 import { createClient } from '@libsql/client';
 import * as schema from './schema.js';
-import { DATABASE_URL, TURSO_AUTH_TOKEN } from '$env/static/private';
+import { env } from '$env/dynamic/private';
 
-if (!DATABASE_URL) throw new Error('DATABASE_URL is not set');
-if (!TURSO_AUTH_TOKEN) throw new Error('TURSO_AUTH_TOKEN is not set');
+const databaseUrl = env['DATABASE_URL'] ?? env['TURSO_DATABASE_URL'];
 
-const client = createClient({
-	url: DATABASE_URL,
-	authToken: TURSO_AUTH_TOKEN,
-});
+if (!databaseUrl) throw new Error('DATABASE_URL or TURSO_DATABASE_URL is not set');
+const authToken = env['TURSO_AUTH_TOKEN'];
+
+const client = databaseUrl.startsWith('file:')
+	? createClient({ url: databaseUrl })
+	: createClient({
+		url: databaseUrl,
+		authToken,
+	});
 
 export const db = drizzle(client, { schema });
