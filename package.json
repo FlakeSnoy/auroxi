@@ -1,6 +1,7 @@
 {
 	"name": "auroxi",
 	"version": "0.0.1",
+	"license": "Apache-2.0",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run prepack",
@@ -33,7 +34,8 @@
 		}
 	},
 	"peerDependencies": {
-		"svelte": "^5.0.0"
+		"svelte": "^5.0.0",
+		"@sveltejs/kit": "^2.57.0"
 	},
 	"devDependencies": {
 		"@better-auth/cli": "~1.4.21",
